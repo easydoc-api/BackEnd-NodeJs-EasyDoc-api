@@ -4,7 +4,7 @@ import { IPacienteRequest } from "../interfaces/pacientes"
 
 export const newPatientSchema: SchemaOf<IPacienteRequest> = yup.object().shape({
   nome: yup.string().required(),
-  cpf: yup.string().required().max(11, "CPF inválido!"),
+  cpf: yup.string().required().min(11, "CPF inválido!").max(11, "CPF inválido!"),
   email: yup.string(),
   dataNascimento: yup.date().required(),
   cidadeOrigem: yup.string().required(),
