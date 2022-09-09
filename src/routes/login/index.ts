@@ -6,7 +6,10 @@ import { loginDoctorSchema } from "../../schemas/login.schema"
 const login = Router()
 
 export const loginRoutes = () => {
-  login.post("", schemaValidationMiddleware(loginDoctorSchema), createLoginController)
-
+  login.post(
+    "",
+    schemaValidationMiddleware(loginDoctorSchema),
+    createLoginController
+  )
   return login
 }
