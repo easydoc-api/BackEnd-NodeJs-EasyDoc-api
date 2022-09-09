@@ -1,6 +1,7 @@
 import { Router } from "express"
 
 import { doctorCreateController } from "../../controllers/medicos/doctorCreate.controller"
+import { doctorDeleteController } from "../../controllers/medicos/doctorDelete.controller"
 import { doctorListController } from "../../controllers/medicos/doctorList.controller"
 import { doctorListOneByIdController } from "../../controllers/medicos/doctorListById.controller"
 
@@ -14,6 +15,6 @@ export const medicRoutes = () => {
   medic.get("", doctorListController) //Listagem de todos os Médicos
   medic.get("/:id", doctorListOneByIdController) // Responsável por listar um medico especifico por meio do ID
   medic.patch("/:id") // Responsável por alterar os dados de um médico especifico
-  medic.delete("/id") // Responsável por apagar todos os dados de um médico
+  medic.delete("/:id", doctorDeleteController) // Responsável por apagar todos os dados de um médico
   return medic
 }
