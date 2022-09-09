@@ -2,11 +2,26 @@ export interface IPacienteRequest {
   nome: string
   cpf: string
   email?: string
-  dataNascimento: Date
+  dataNascimento: string
   cidadeOrigem: string
   idade: number
   nomeBebe?: string
-  nomeDoPai?: string
+  nomePai?: string
+  diagnostico: string
+  procedimentos?: string
+  cariotipo?: string
+  arquivos_id?: Array<[]>
+}
+
+export interface IPacienteResponse {
+  nome: string
+  cpf: string
+  email?: string
+  dataNascimento: string
+  cidadeOrigem: string
+  idade: number
+  nomeBebe?: string
+  nomePai?: string
   diagnostico: string
   procedimentos?: string
   cariotipo?: string

@@ -12,11 +12,11 @@ export class Medico {
   @PrimaryGeneratedColumn("uuid")
   readonly id: string
 
-  @Column({ type: "date" })
-  criadoEm: string
+  @Column()
+  criadoEm: Date
 
-  @Column({ type: "date" })
-  atualizadoEm: string
+  @Column()
+  atualizadoEm: Date
 
   @Column({ length: 200 })
   nome: string
