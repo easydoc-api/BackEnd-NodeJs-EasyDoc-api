@@ -6,6 +6,7 @@ export const isAdmMiddleware = async (
   res: Response,
   next: NextFunction
 ) => {
+
   const {adm} = req.user
 
   if(!adm){
