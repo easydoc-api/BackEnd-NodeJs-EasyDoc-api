@@ -12,6 +12,10 @@ const appointmentZeroCreateService = async ({paridade, consanguinidade, idadeGes
   const zeroAppointmentAlredyExists = await appointmentZeroRepository.findOneBy({
   })
 
+  if(zeroAppointmentAlredyExists){
+    throw new AppError("Consulta zero já cadastrada", 401) 
+  }
+
   const appointmentZero = appointmentZeroRepository.create({
     paridade,
     consanguinidade,
