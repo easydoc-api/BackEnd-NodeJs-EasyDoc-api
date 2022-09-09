@@ -32,3 +32,4 @@ export const authTokenMiddleware = async (
   )
   next()
 }
+
