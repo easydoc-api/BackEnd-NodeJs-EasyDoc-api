@@ -27,10 +27,10 @@ export class ConsultaZero {
   idadeGestacional: number
 
   @Column({ type: "date" })
-  dataMestruacao?: string
+  dataMenstruacao?: string
 
   @Column({ type: "date" })
-  primeiroUltrasom?: string
+  primeiroUltrassom?: string
 
   @Column()
   semanaGestacional: number
