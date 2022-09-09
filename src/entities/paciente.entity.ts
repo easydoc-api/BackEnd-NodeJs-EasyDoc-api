@@ -43,20 +43,29 @@ export class Paciente {
   @Column()
   idade: number
 
-  @Column()
-  nomeBebe?: string
+  @Column({ 
+    length: 200, 
+    nullable: true 
+  })
+  nomeBebe: string
 
-  @Column()
-  nomePai?: string
+  @Column({ 
+    length: 200, 
+    nullable: true 
+  })
+  nomePai: string
 
   @Column()
   diagnostico: string
 
   @Column()
-  procedimentos?: string
+  procedimentos: string
 
-  @Column()
-  cariotipo?: string
+  @Column({ 
+    length: 20, 
+    nullable: true 
+  })
+  cariotipo: string
 
   @OneToOne(() => Prontuario, {
     eager: true,
