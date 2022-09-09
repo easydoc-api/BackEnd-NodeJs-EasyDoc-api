@@ -1,7 +1,8 @@
 //Exports externos
 import "reflect-metadata"
-import "express-async-errors"
 import express from "express"
+import "express-async-errors"
+import { handleErrorMiddleware } from "./middlewares/handleError.middleware"
 
 //Rotas
 import { patientRoutes } from "./routes/pacientes"
@@ -14,7 +15,6 @@ import { loginRoutes } from "./routes/login"
 import { prontuarioRoutes } from "./routes/prontuarios"
 
 //Middlewares
-import { handleErrorMiddleware } from "./middlewares/handleError.middleware"
 
 //Controllers
 
