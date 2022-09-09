@@ -3,6 +3,7 @@ export interface IMedico {
   nome: string
   email: string
   senha: string
+  adm: boolean
   categoria: string
   criadoEm: Date
   atualizadoEm: Date
