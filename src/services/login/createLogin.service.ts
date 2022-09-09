@@ -9,7 +9,7 @@ export const createLoginService = async ({
   email,
   senha,
 }: IMedicoLogin): Promise<string> => {
-  const doctorRepository = AppDataSource.getMongoRepository(Medico)
+  const doctorRepository = AppDataSource.getRepository(Medico)
   const doctor = await doctorRepository.findOneBy({ email })
 
   if (doctor?.estaAtivo == false) {

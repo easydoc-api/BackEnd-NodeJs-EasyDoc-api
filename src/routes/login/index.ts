@@ -1,16 +1,12 @@
 import { Router } from "express"
-import { authTokenMiddleware } from "../../middlewares/authToken.middleware"
+import { createLoginController } from "../../controllers/login/createLogin.controller"
 import { schemaValidationMiddleware } from "../../middlewares/schemaValidation.middleware"
 import { loginDoctorSchema } from "../../schemas/login.schema"
 
 const login = Router()
 
 export const loginRoutes = () => {
-  login.post(
-    "",
-    authTokenMiddleware,
-    schemaValidationMiddleware(loginDoctorSchema)
-  )
+  login.post("", schemaValidationMiddleware(loginDoctorSchema), createLoginController)
 
   return login
 }
