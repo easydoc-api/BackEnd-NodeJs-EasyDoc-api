@@ -9,7 +9,9 @@ const appointmentZeroCreateService = async ({paridade, consanguinidade, idadeGes
 
   const zeroAppointment = await appointmentZeroRepository.find()
 
- 
+  const zeroAppointmentAlredyExists = await appointmentZeroRepository.findOneBy({
+  })
+
   const appointmentZero = appointmentZeroRepository.create({
     paridade,
     consanguinidade,
@@ -24,7 +26,7 @@ const appointmentZeroCreateService = async ({paridade, consanguinidade, idadeGes
 
   await appointmentZeroRepository.save(appointmentZero)
 
-  return
-
-
+  return appointmentZero
 }
+
+export default appointmentZeroCreateService
