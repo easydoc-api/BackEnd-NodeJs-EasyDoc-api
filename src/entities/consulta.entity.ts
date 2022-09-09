@@ -28,29 +28,46 @@ export class Consulta {
   @Column({ length: 50 })
   pressãoArterial: string
 
-  @Column({ length: 10 })
-  uteroFita?: string
+  @Column({ 
+    length: 10,
+    nullable: true
+   })
+  uteroFita: string
 
-  @Column({ length: 10 })
-  apresentacao?: string
+  @Column({ 
+    length: 10,
+    nullable: true
+   })
+  apresentacao: string
 
-  @Column()
-  movimentacaoFetal?: boolean
+  @Column({nullable: true})
+  movimentacaoFetal: boolean
 
-  @Column({ length: 10 })
-  batimentoCardFetal?: string
+  @Column({ 
+    length: 10,
+    nullable: true
+   })
+  batimentoCardFetal: string
 
-  @Column({ length: 10 })
-  edema?: string
+  @Column({ 
+    length: 10,
+    nullable: true
+   })
+  edema: string
 
-  @Column({ length: 200 })
-  toqueVaginal?: string
+  @Column({ length: 200,
+    nullable: true
+   })
+  toqueVaginal: string
 
   @Column({ length: 200 })
   conduta: string
 
-  @Column({ type: "date" })
-  retorno?: string
+  @Column({ 
+    type: "date",
+    nullable: true
+ })
+  retorno: string
 
   @ManyToOne(() => Prontuario, { eager: true })
   prontuario: Prontuario
