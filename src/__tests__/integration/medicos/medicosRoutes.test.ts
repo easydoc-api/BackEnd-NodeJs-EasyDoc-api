@@ -21,8 +21,8 @@ describe("/users", () => {
         await connection.destroy()
     })
 
-    test("POST /medico/register - Possível cadastrar um médico", async () =>{
-        const res = await request(app).post('/medico/register').send(medicoNormal)
+    test("POST /medicos/register - Possível cadastrar um médico", async () =>{
+        const res = await request(app).post('/medicos/register').send(medicoNormal)
 
         expect(res.body).toHaveProperty("nome")
         expect(res.body).toHaveProperty("email")
@@ -39,8 +39,8 @@ describe("/users", () => {
         expect(res.status).toBe(201)
     })
 
-    test("POST /medico/register - Possível cadastrar um médico professor", async () =>{
-        const res = await request(app).post('/medico/register').send(medicoProfessor)
+    test("POST /medicos/register - Possível cadastrar um médico professor", async () =>{
+        const res = await request(app).post('/medicos/register').send(medicoProfessor)
 
         expect(res.body).toHaveProperty("nome")
         expect(res.body).toHaveProperty("email")
@@ -58,25 +58,25 @@ describe("/users", () => {
         expect(res.status).toBe(201)
     })
 
-    test("POST /medico/register -  Não é possível cadastrar um médico já cadastrado",async () => {
-        const response = await request(app).post('/users').send(medicoNormal)
+    test("POST /medicos/register -  Não é possível cadastrar um médico já cadastrado",async () => {
+        const response = await request(app).post('/medicos').send(medicoNormal)
 
         expect(response.body).toHaveProperty("message")
         expect(response.status).toBe(400)
              
     })
     
-    test("POST /medico/register -  Não é possível cadastrar um professor já cadastrado",async () => {
-        const response = await request(app).post('/users').send(medicoProfessor)
+    test("POST /medicos/register -  Não é possível cadastrar um professor já cadastrado",async () => {
+        const response = await request(app).post('/medicos').send(medicoProfessor)
 
         expect(response.body).toHaveProperty("message")
         expect(response.status).toBe(400)
              
     })
 
-    test("GET /medico - Possível listar todos os médicos", async () =>{
+    test("GET /medicos - Possível listar todos os médicos", async () =>{
         const professorLoginResponse = await request(app).post("/login").send(loginMedicoProfessor)
-        const response = await request(app).get('/medico').set("Authorization", `Bearer ${professorLoginResponse.body.token}`)
+        const response = await request(app).get('/medicos').set("Authorization", `Bearer ${professorLoginResponse.body.token}`)
 
         expect(response.body).toHaveLength(2)
         expect(response.status).toBe(200)
@@ -84,7 +84,7 @@ describe("/users", () => {
 
     test("GET /medico - Não é possível listar todos os médicos sem autorização", async () =>{
         const normalDoctorLoginResponse = await request(app).post("/login").send(loginMedicoNormal)
-        const response = await request(app).get('/medico').set("Authorization", `Bearer ${normalDoctorLoginResponse.body.token}`)
+        const response = await request(app).get('/medicos').set("Authorization", `Bearer ${normalDoctorLoginResponse.body.token}`)
 
         expect(response.body).toHaveProperty("message")
         expect(response.status).toBe(403)
@@ -92,10 +92,10 @@ describe("/users", () => {
  
     test("DELETE /medico/:id -  Possível desativar um médico",async () => {
         const professorLoginResponse = await request(app).post("/login").send(medicoProfessor);
-        const doctorTobeDeleted = await request(app).get('/medico').set("Authorization", `Bearer ${professorLoginResponse.body.token}`)
+        const doctorTobeDeleted = await request(app).get('/medicos').set("Authorization", `Bearer ${professorLoginResponse.body.token}`)
         
-        const response = await request(app).delete(`/medico/${doctorTobeDeleted.body[0].id}`)
-        const findUser = await request(app).get('/medico').set("Authorization", `Bearer ${professorLoginResponse.body.token}`)
+        const response = await request(app).delete(`/medicos/${doctorTobeDeleted.body[0].id}`)
+        const findUser = await request(app).get('/medicos').set("Authorization", `Bearer ${professorLoginResponse.body.token}`)
 
         expect(response.status).toBe(204)
         expect(findUser.body[0].isActive).toBe(false)
