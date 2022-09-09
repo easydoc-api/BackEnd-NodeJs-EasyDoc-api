@@ -3,7 +3,11 @@ import { Medico } from "../../entities/medico.entity";
 import { AppError } from "../../errors/AppError";
 import { IMedico } from "../../interfaces/medicos";
 
-export const doctorUpdateService = async (id: string, data: IMedico) => {
+export const doctorUpdateService = async (
+  id: string,
+  data: IMedico,
+  doctorId: string
+) => {
   const doctorRepository = AppDataSource.getRepository(Medico);
 
   const doctor = await doctorRepository.findOne({
@@ -14,6 +18,10 @@ export const doctorUpdateService = async (id: string, data: IMedico) => {
 
   if (!doctor) {
     throw new AppError("Doctor not Found!", 404);
+  }
+
+  if (doctor.id !== doctorId) {
+    throw new AppError("You're the owner!", 409);
   }
 
   if (
