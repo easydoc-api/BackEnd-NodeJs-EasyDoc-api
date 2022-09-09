@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "ts-node-dev --ignore-watch node_modules src/app.ts",
     "typeorm": "typeorm-ts-node-commonjs",
-    "test": "jest"
+    "test": "jest",
     "build":"tsc",
     "start":"node dist/app.js"
   },
