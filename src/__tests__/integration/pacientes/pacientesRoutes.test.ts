@@ -2,7 +2,7 @@ import { DataSource } from "typeorm";
 import AppDataSource from "../../../data-source";
 import request from "supertest"
 import app from "../../../app";
-import { loginMedicoProfessor, medicoNormal, medicoProfessor, patiente } from "../../mocks";
+import { loginMedicoProfessor, medicoNormal, medicoProfessor, pacienteAtualizado, pacienteAtualizadoSemPermissao, patiente } from "../../mocks";
 
 describe("/patientes", () => {
     let connection: DataSource
@@ -78,6 +78,40 @@ describe("/patientes", () => {
         expect(response.body).toHaveProperty("message")
         expect(response.status).toBe(403)
              
+    })
+
+    test("PATCH /pacientes/:id - É possível atualizar um paciente como ADM ou Professor", async () =>{
+        const professorLoginResponse = await request(app).post("/login").send(medicoProfessor);
+        const patienteTobeUpdated = await request(app).get('/patientes').set("Authorization", `Bearer ${professorLoginResponse.body.token}`)
+
+        const response = await request(app).patch(`/patientes/${patienteTobeUpdated.body[0].id}`)
+        .send(pacienteAtualizado).set("Authorization", `Bearer ${professorLoginResponse.body.token}`)
+
+        expect(response.body).toHaveProperty('nome')
+        expect(response.body).toHaveProperty('cpf')
+        expect(response.body).toHaveProperty('email')
+        expect(response.body).toHaveProperty('dataNascimento')
+        expect(response.body).toHaveProperty('cidadeOrigem')
+        expect(response.body).toHaveProperty('idade')
+        expect(response.body).toHaveProperty('nomeDoBebe')
+        expect(response.body).toHaveProperty('nomeDoPai')
+        expect(response.body).toHaveProperty('diagnostico')
+        expect(response.body).toHaveProperty('procedimentos')
+        expect(response.body).toHaveProperty('cariotipo')
+        expect(response.body.name).toEqual("Lucas da Silva Neto")
+        expect(response.body.email).toEqual("lucas.silva@gmail.com")
+        expect(response.body.nomeDoBebe).toEqual("Fabio da Silva")
+    })
+
+    test("PATCH /pacientes/:id - Não é possível atualizar o paciente sem autorização", async () =>{
+        const medicoLoginResponse = await request(app).post("/login").send(medicoNormal);
+        const doctorTobeUpdated = await request(app).get('/medicos').set("Authorization", `Bearer ${medicoLoginResponse.body.token}`)
+
+        const res = await request(app).patch(`/medicos/${doctorTobeUpdated.body[0].id}`)
+        .send(pacienteAtualizadoSemPermissao).set("Authorization", `Bearer ${medicoLoginResponse.body.token}`)
+
+        expect(res.status).toBe(401)
+        expect(res.body).toHaveProperty("message")
     })
    
     test("DELETE /pacientes/:id -  Não é possível deletar um paciente",async () => {
