@@ -4,7 +4,7 @@ import request from "supertest"
 import app from "../../../app";
 import { loginMedicoProfessor, medicoNormal, medicoProfessor, patiente } from "../../mocks";
 
-describe("/users", () => {
+describe("/patientes", () => {
     let connection: DataSource
 
     beforeAll(async() => {
@@ -80,7 +80,7 @@ describe("/users", () => {
              
     })
    
-    test("DELETE /paciente/:id -  Não é possível deletar um paciente",async () => {
+    test("DELETE /pacientes/:id -  Não é possível deletar um paciente",async () => {
         const doctorLoginResponse = await request(app).post("/login").send(medicoNormal);
         const professorLoginResponse = await request(app).post("/login").send(medicoProfessor);
         const patienteTobeDeleted = await request(app).get('/pacientes').set("Authorization", `Bearer ${professorLoginResponse.body.token}`)
@@ -92,8 +92,8 @@ describe("/users", () => {
              
     })
 
-    test("DELETE /paciente/:id -  Possível desativar um paciente",async () => {
-        await request(app).post('/medico/register').send(medicoProfessor)
+    test("DELETE /pacientes/:id -  Possível desativar um paciente",async () => {
+        await request(app).post('/medicos/register').send(medicoProfessor)
         await request(app).post('/pacientes').send(patiente) 
 
         const professorLoginResponse = await request(app).post("/login").send(loginMedicoProfessor);
@@ -107,8 +107,8 @@ describe("/users", () => {
      
     })
 
-    test("DELETE /paciente/:id -  Não é possível desativar um paciente com estaAtivo = false",async () => {
-        await request(app).post('/medico/register').send(medicoProfessor)
+    test("DELETE /pacientes/:id -  Não é possível desativar um paciente com estaAtivo = false",async () => {
+        await request(app).post('/medicos/register').send(medicoProfessor)
         await request(app).post('/pacientes').send(patiente) 
 
         const professorLoginResponse = await request(app).post("/login").send(loginMedicoProfessor);
@@ -121,7 +121,7 @@ describe("/users", () => {
     })
 
     test("DELETE -  Não é possível deletar um paciente com id inválido",async () => {
-        await request(app).post('/medico/register').send(medicoProfessor)
+        await request(app).post('/medicos/register').send(medicoProfessor)
         await request(app).post('/pacientes').send(patiente) 
 
         const professorLoginResponse = await request(app).post("/login").send(loginMedicoProfessor);
