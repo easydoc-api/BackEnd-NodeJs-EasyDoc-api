@@ -1,4 +1,4 @@
-import { IMedicoLogin, IMedicoRequest } from "../../interfaces/medicos"
+import { IMedicoLogin, IMedicoRequest, IMedicoUpdate } from "../../interfaces/medicos"
 import { IPacienteRequest } from "../../interfaces/pacientes"
 
 
@@ -14,6 +14,20 @@ export const medicoNormal : IMedicoRequest = {
     email: "cayo@gmail.com",
     senha: "1234", 
     categoria: "R2" 
+}
+
+export const medicoAtualizado : IMedicoUpdate = {
+    nome: "Ricardo",
+    email: "ricardo@gmail.com",
+    categoria: "Professor"
+}
+
+export const medicoAtualizadoCategoriaAdm : IMedicoUpdate = {
+    categoria: "R4"
+}
+
+export const medicoAtualizadoCategoriaNormal : IMedicoUpdate = {
+    categoria: "R2"
 }
 
 export const loginMedicoNormal: IMedicoLogin = {
