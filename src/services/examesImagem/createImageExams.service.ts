@@ -8,7 +8,7 @@ export const createImageExamsService = async ({
 }: IImageExamesRequest) => {
   const imageExamsRepository = AppDataSource.getRepository(ExamesDeImagem)
 
-  const imageExams = await imageExamsRepository.find()
+  //const imageExams = await imageExamsRepository.find()
 
   const newImageExams = imageExamsRepository.create({
     laudo,
