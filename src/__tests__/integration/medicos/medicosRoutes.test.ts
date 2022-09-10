@@ -90,7 +90,7 @@ describe("/medicos", () => {
         expect(response.status).toBe(403)
     })
 
-    test("PATCH /medicos/:id - É possível atualizar um médico como ADM", async () =>{
+    test("PATCH /medicos/:id - É possível atualizar um médico como ADM ou Professor", async () =>{
         const professorLoginResponse = await request(app).post("/login").send(medicoProfessor);
         const doctorTobeUpdated = await request(app).get('/medicos').set("Authorization", `Bearer ${professorLoginResponse.body.token}`)
 

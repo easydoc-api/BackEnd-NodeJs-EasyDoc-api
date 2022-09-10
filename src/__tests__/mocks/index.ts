@@ -1,5 +1,5 @@
 import { IMedicoLogin, IMedicoRequest, IMedicoUpdate } from "../../interfaces/medicos"
-import { IPacienteRequest } from "../../interfaces/pacientes"
+import { IPacienteRequest, IPacienteUpdate } from "../../interfaces/pacientes"
 
 
 export const medicoProfessor : IMedicoRequest = {
@@ -40,6 +40,11 @@ export const loginMedicoProfessor: IMedicoLogin = {
     senha: "1234",
 }
 
+export const loginMedico: IMedicoLogin = {
+    email: "emailErrado@gmail.com",
+    senha: "senhaForteMasNãoCorreta",
+}
+
 export const patiente: IPacienteRequest ={
     nome: "Matheus De Souza",
     cpf: '123.456.789-10',
@@ -52,4 +57,14 @@ export const patiente: IPacienteRequest ={
     diagnostico: "braço quebrado", 
     procedimentos: "desquebrar o braço",
     cariotipo: "banda g",
+}
+
+export const pacienteAtualizado: IPacienteUpdate = {
+    nome: "Lucas da Silva Neto",
+    email: "lucas.silva@gmail.com",
+    nomeBebe: "Fabio da Silva"
+}
+
+export const pacienteAtualizadoSemPermissao: IPacienteUpdate = {
+    nome: "Abc Nome Não Autorizado"
 }
