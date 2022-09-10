@@ -1,5 +1,5 @@
 import { Request, Response } from "express"
-import { createImageExamsService } from "../../services/examesImagem/createExamesImagem.service"
+import { createImageExamsService } from "../../services/examesImagem/createImageExams.service"
 
 export const createImageExamsController = async (
   req: Request,
