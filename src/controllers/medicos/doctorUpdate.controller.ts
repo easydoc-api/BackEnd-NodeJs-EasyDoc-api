@@ -1,3 +1,4 @@
+import { instanceToPlain } from "class-transformer";
 import { Request, Response } from "express";
 import { doctorUpdateService } from "../../services/medicos/doctorUpdate.service";
 
@@ -8,5 +9,5 @@ export const doctorUpdateController = async (req: Request, res: Response) =>{
 
     const updatedDoctor = await doctorUpdateService(id, data, doctorId)
 
-    return res.status(200).json(updatedDoctor)
+    return res.status(200).json(instanceToPlain(updatedDoctor))
 }

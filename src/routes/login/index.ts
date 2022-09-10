@@ -11,6 +11,5 @@ export const loginRoutes = () => {
     schemaValidationMiddleware(loginDoctorSchema),
     createLoginController
   )
-
   return login
 }

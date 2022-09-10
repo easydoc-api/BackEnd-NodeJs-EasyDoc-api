@@ -11,8 +11,9 @@ import { appointmentRoutes } from "./routes/consultas"
 import { appointmentZeroRoutes } from "./routes/consultasZero"
 import { imageExamsRouter } from "./routes/examesImagem"
 import { labExamsRouter } from "./routes/examesLaboratorial"
-import { loginRoutes } from "./routes/login"
+
 import { prontuarioRoutes } from "./routes/prontuarios"
+import { loginRoutes } from "./routes/login"
 
 //Middlewares
 

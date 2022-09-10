@@ -20,3 +20,10 @@ export interface IMedicoLogin {
   email: string
   senha: string
 }
+
+export interface IMedicoUpdate {
+  nome?: string
+  email?: string
+  senha?: string
+  categoria?: string
+}
