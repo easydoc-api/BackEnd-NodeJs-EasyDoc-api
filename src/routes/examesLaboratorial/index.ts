@@ -1,5 +1,7 @@
 import { Router } from "express";
+
 import { examLabCreateController } from "../../controllers/examesLaboratoriais/examLabCreate.controller";
+import { examLabDeleteController } from "../../controllers/examesLaboratoriais/examLabDelete.controller";
 import { examLabListOneByIdController } from "../../controllers/examesLaboratoriais/examLabListById.controller";
 import { examsLabListController } from "../../controllers/examesLaboratoriais/examsLabList.controller";
 
@@ -10,6 +12,6 @@ export const labExamsRouter = () => {
   labExams.get("", examsLabListController);
   labExams.get("/paciente/:id", examLabListOneByIdController);
   labExams.patch("/:id");
-  labExams.delete("/:id");
+  labExams.delete("/:id", examLabDeleteController);
   return labExams;
 };
