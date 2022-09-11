@@ -1,5 +1,5 @@
-import { IMedicoLogin, IMedicoRequest } from "../../interfaces/medicos"
-import { IPacienteRequest } from "../../interfaces/pacientes"
+import { IMedicoLogin, IMedicoRequest, IMedicoUpdate } from "../../interfaces/medicos"
+import { IPacienteRequest, IPacienteUpdate } from "../../interfaces/pacientes"
 
 
 export const medicoProfessor : IMedicoRequest = {
@@ -16,6 +16,20 @@ export const medicoNormal : IMedicoRequest = {
     categoria: "R2" 
 }
 
+export const medicoAtualizado : IMedicoUpdate = {
+    nome: "Ricardo",
+    email: "ricardo@gmail.com",
+    categoria: "Professor"
+}
+
+export const medicoAtualizadoCategoriaAdm : IMedicoUpdate = {
+    categoria: "R4"
+}
+
+export const medicoAtualizadoCategoriaNormal : IMedicoUpdate = {
+    categoria: "R2"
+}
+
 export const loginMedicoNormal: IMedicoLogin = {
     email: "cayo@gmail.com",
     senha: "1234", 
@@ -24,6 +38,11 @@ export const loginMedicoNormal: IMedicoLogin = {
 export const loginMedicoProfessor: IMedicoLogin = {
     email: "kamila@gmail.com",
     senha: "1234",
+}
+
+export const loginMedico: IMedicoLogin = {
+    email: "emailErrado@gmail.com",
+    senha: "senhaForteMasNãoCorreta",
 }
 
 export const patiente: IPacienteRequest ={
@@ -38,4 +57,14 @@ export const patiente: IPacienteRequest ={
     diagnostico: "braço quebrado", 
     procedimentos: "desquebrar o braço",
     cariotipo: "banda g",
+}
+
+export const pacienteAtualizado: IPacienteUpdate = {
+    nome: "Lucas da Silva Neto",
+    email: "lucas.silva@gmail.com",
+    nomeBebe: "Fabio da Silva"
+}
+
+export const pacienteAtualizadoSemPermissao: IPacienteUpdate = {
+    nome: "Abc Nome Não Autorizado"
 }
