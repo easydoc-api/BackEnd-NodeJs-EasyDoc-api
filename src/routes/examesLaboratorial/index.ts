@@ -6,13 +6,25 @@ import { examLabListOneByIdController } from "../../controllers/examesLaboratori
 import { examLabUpdateController } from "../../controllers/examesLaboratoriais/examLabUpdate.controller";
 import { examsLabListController } from "../../controllers/examesLaboratoriais/examsLabList.controller";
 
+import { authTokenMiddleware } from "../../middlewares/authToken.middleware";
+import { isAdmMiddleware } from "../../middlewares/isAdm.middleware";
+
 const labExams = Router();
 
 export const labExamsRouter = () => {
-  labExams.post("/register", examLabCreateController);
-  labExams.get("", examsLabListController);
-  labExams.get("/paciente/:id", examLabListOneByIdController);
+  labExams.post("/register", authTokenMiddleware, examLabCreateController);
+  labExams.get("", authTokenMiddleware, examsLabListController);
+  labExams.get(
+    "/paciente/:id",
+    authTokenMiddleware,
+    examLabListOneByIdController
+  );
   labExams.patch("/:id", examLabUpdateController);
-  labExams.delete("/:id", examLabDeleteController);
+  labExams.delete(
+    "/:id",
+    authTokenMiddleware,
+    isAdmMiddleware,
+    examLabDeleteController
+  );
   return labExams;
 };
