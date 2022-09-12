@@ -1,9 +1,10 @@
-import { Request, Response } from 'express'
-import appointmentZeroCreateService from '../../services/consultasZero/consultaZeroCreate.service'
+import { Request, Response } from "express";
+import { apointmentCreateService } from "../../services/consultas/apointmentCreate.service";
 
-export const appointmentCreateController = async (req: Request, res: Response) => {
-  
-    const newAppointment = await appointmentZeroCreateService(req.body)
-    
-    return res.status(201).send(newAppointment)
-}
+const appointmentCreateController = async (req: Request, res: Response) => {
+  const newAppoint = await apointmentCreateService(req.body);
+
+  return res.status(201).send(newAppoint);
+};
+
+export default appointmentCreateController;

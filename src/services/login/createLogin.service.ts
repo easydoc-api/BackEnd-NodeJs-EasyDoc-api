@@ -13,7 +13,7 @@ export const createLoginService = async ({
   const doctor = await doctorRepository.findOneBy({ email })
 
   if (doctor?.estaAtivo == false) {
-    throw new AppError("User is not active!")
+    throw new AppError("User is not active!", 400)
   }
 
   if (!doctor) {

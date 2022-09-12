@@ -17,15 +17,15 @@ export const doctorCreateService = async ({
       email,
     },
   })
-
+ 
   if (doctorAlreadyExists) {
     throw new AppError("Doctor is already registered!", 409)
   }
-
+  
   const hashedPassword = await hash(senha, 10)
 
   if (categoria === "R4" || categoria === "Professor") {
-    console.log("Deu errado")
+  
     const admDoctor = doctorRepository.create({
       nome,
       email,
@@ -40,17 +40,18 @@ export const doctorCreateService = async ({
 
     return admDoctor
   }
+
   const normalDoctor = doctorRepository.create({
     nome,
     email,
     senha: hashedPassword,
     categoria,
     adm: false,
-    estaAtivo: true,
     criadoEm: new Date(),
     atualizadoEm: new Date(),
   })
 
   await doctorRepository.save(normalDoctor)
+
   return normalDoctor
 }
