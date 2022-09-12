@@ -1,5 +1,5 @@
 import { Router } from "express"
-import { appointmentCreateController } from "../../controllers/consultas/apointmentCreate.controller"
+import appointmentCreateController from "../../controllers/consultas/apontmentCreate.controller"
 import { authTokenMiddleware } from "../../middlewares/authToken.middleware"
 
 const appointment = Router()
