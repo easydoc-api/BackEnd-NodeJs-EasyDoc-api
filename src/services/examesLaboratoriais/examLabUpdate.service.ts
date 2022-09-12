@@ -2,11 +2,11 @@ import AppDataSource from "../../data-source";
 import { ExamesLaboratoriais } from "../../entities/examesLaboratoriais.entity";
 
 import { AppError } from "../../errors/AppError";
-import { ILabExamesRquest } from "../../interfaces/examesLaboratoriais";
+import { ILabExamesRequest } from "../../interfaces/examesLaboratoriais";
 
 export const examLabUpdateService = async (
   id: string,
-  data: ILabExamesRquest
+  data: ILabExamesRequest
 ) => {
   const examLabRepository = AppDataSource.getRepository(ExamesLaboratoriais);
 

@@ -1,3 +1,4 @@
+import { IConsultZeroRequest } from "../../interfaces/consultasZero"
 import { IMedicoLogin, IMedicoRequest, IMedicoUpdate } from "../../interfaces/medicos"
 import { IPacienteRequest, IPacienteUpdate } from "../../interfaces/pacientes"
 
@@ -79,4 +80,16 @@ export const pacienteAtualizado: IPacienteUpdate = {
 
 export const pacienteAtualizadoSemPermissao: IPacienteUpdate = {
     nome: "Abc Nome Não Autorizado"
+}
+
+export const criarNovaConsultaZero: IConsultZeroRequest = {
+    paridade: "Paridade é o número de partos depois da 20ª semana.",
+    consanguinidade: "Consanguinidade é a afinidade por laços de sangue entre indivíduos aparentados, que são geneticamente semelhantes.",
+    idadeGestacional: 12,
+    dataMenstruacao: "2022-12-09",
+    primeiroUltrassom: "2022-12-09",
+    semanaGestacional: 2,
+    diaGestacional: 12,
+    historiaPregressa: "Adquire-se informações sobre toda a história médica do paciente, mesmo das condições que não estejam relacionadas com a doença atual",
+    historiaGinecologicaObstetrica: "Se a paciente possuir histórico obstétrico, deve-se registrar o número de gestações ocorridas, o tipo de parto,  peso ao nascer, idade gestacional em que ocorreu o parto, ano em que o parto ocorreu, idade atual dos filhos e quaisquer problemas que tenham ocorrido durante gestações anteriores",
 }
