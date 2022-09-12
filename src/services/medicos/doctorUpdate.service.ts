@@ -6,7 +6,8 @@ import { IMedico } from "../../interfaces/medicos";
 export const doctorUpdateService = async (
   id: string,
   data: IMedico,
-  doctorId: string
+  doctorId: string,
+  adm : boolean
 ) => {
   const doctorRepository = AppDataSource.getRepository(Medico);
 
@@ -20,8 +21,8 @@ export const doctorUpdateService = async (
     throw new AppError("Doctor not Found!", 404);
   }
 
-  if (doctor.id !== doctorId) {
-    throw new AppError("You're the owner!", 409);
+  if (doctor.id !== doctorId && !adm) {
+    throw new AppError("You dont have authorization!", 409);
   }
 
   if (

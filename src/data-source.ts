@@ -1,5 +1,5 @@
-import { DataSource } from "typeorm";
-import "dotenv/config";
+import { DataSource } from "typeorm"
+import "dotenv/config"
 
 const AppDataSource = new DataSource(
   {
@@ -49,6 +49,6 @@ const AppDataSource = new DataSource(
   //     entities: ["src/entities/*.ts"],
   //     migrations: ["src/migrations/*.ts"],
   //   }
-);
+)
 
-export default AppDataSource;
+export default AppDataSource

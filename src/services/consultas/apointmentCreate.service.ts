@@ -18,19 +18,19 @@ export const apointmentCreateService = async ({
   const consultRepository = AppDataSource.getRepository(Consulta);
 
   const consult = consultRepository.create({
-    apresentacao: apresentacao,
-    atualizadoEm: new Date(),
-    batimentoCardFetal: batimentoCardFetal,
-    conduta: conduta,
     data: new Date(),
-    edema: edema,
-    idadeGestacional: idadeGestacional,
-    movimentacaoFetal: movimentacaoFetal,
     peso: peso,
+    edema: edema,
+    conduta: conduta,
+    apresentacao: apresentacao,
+    idadeGestacional: idadeGestacional,
+    batimentoCardFetal: batimentoCardFetal,
+    movimentacaoFetal: movimentacaoFetal,
     pressãoArterial: pressaoArterial,
-    retorno: retorno,
     toqueVaginal: toqueVaginal,
     uteroFita: uteroFita,
+    atualizadoEm: new Date(),
+    retorno: retorno,
   });
 
   await consultRepository.save(consult);
