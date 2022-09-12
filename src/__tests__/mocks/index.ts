@@ -1,7 +1,24 @@
 import { IConsultZeroRequest } from "../../interfaces/consultasZero"
-import { IMedicoLogin, IMedicoRequest, IMedicoUpdate } from "../../interfaces/medicos"
-import { IPacienteRequest, IPacienteUpdate } from "../../interfaces/pacientes"
+import { IConsultRequest } from "../../interfaces/consultas";
+import {
+  IMedicoLogin,
+  IMedicoRequest,
+  IMedicoUpdate,
+} from "../../interfaces/medicos";
+import { IPacienteRequest, IPacienteUpdate } from "../../interfaces/pacientes";
 
+export const medicoProfessor: IMedicoRequest = {
+  nome: "Kamila",
+  email: "kamila@gmail.com",
+  senha: "1234",
+  categoria: "R4",
+};
+
+export const medicoAtualizado: IMedicoUpdate = {
+  nome: "Ricardo",
+  email: "ricardo@gmail.com",
+  categoria: "Professor",
+};
 
 export const medicoProfessor : IMedicoRequest = {
     nome: "Kamila",
@@ -24,19 +41,14 @@ export const medicoNormalNaoDono : IMedicoRequest = {
     categoria: "R2" 
 }
 
-export const medicoAtualizado : IMedicoUpdate = {
-    nome: "Ricardo",
-    email: "ricardo@gmail.com",
-    categoria: "Professor"
-}
 
-export const medicoAtualizadoCategoriaAdm : IMedicoUpdate = {
-    categoria: "R4"
-}
+export const medicoAtualizadoCategoriaAdm: IMedicoUpdate = {
+  categoria: "R4",
+};
 
-export const medicoAtualizadoCategoriaNormal : IMedicoUpdate = {
-    categoria: "R2"
-}
+export const medicoAtualizadoCategoriaNormal: IMedicoUpdate = {
+  categoria: "R2",
+};
 
 export const loginMedicoNormal: IMedicoLogin = {
     email: "cayo@gmail.com",
@@ -54,29 +66,29 @@ export const loginMedicoNaoDono : IMedicoLogin ={
 }
 
 export const loginMedico: IMedicoLogin = {
-    email: "emailErrado@gmail.com",
-    senha: "senhaForteMasNãoCorreta",
-}
+  email: "emailErrado@gmail.com",
+  senha: "senhaForteMasNãoCorreta",
+};
 
-export const patiente: IPacienteRequest ={
-    nome: "Matheus De Souza",
-    cpf: '123.456.789-10',
-    email: 'pedro@gmail.com',
-    dataNascimento: "01/01/2000",
-    cidadeOrigem: "Piracicaba", 
-    idade: 22,
-    nomeBebe: "Enzo da Silva",
-    nomePai: "Matheus De Souza",
-    diagnostico: "braço quebrado", 
-    procedimentos: "desquebrar o braço",
-    cariotipo: "banda g",
-}
+export const patiente: IPacienteRequest = {
+  nome: "Matheus De Souza",
+  cpf: "123.456.789-10",
+  email: "pedro@gmail.com",
+  dataNascimento: "01/01/2000",
+  cidadeOrigem: "Piracicaba",
+  idade: 22,
+  nomeBebe: "Enzo da Silva",
+  nomePai: "Matheus De Souza",
+  diagnostico: "braço quebrado",
+  procedimentos: "desquebrar o braço",
+  cariotipo: "banda g",
+};
 
 export const pacienteAtualizado: IPacienteUpdate = {
-    nome: "Lucas da Silva Neto",
-    email: "lucas.silva@gmail.com",
-    nomeBebe: "Fabio da Silva"
-}
+  nome: "Lucas da Silva Neto",
+  email: "lucas.silva@gmail.com",
+  nomeBebe: "Fabio da Silva",
+};
 
 export const pacienteAtualizadoSemPermissao: IPacienteUpdate = {
     nome: "Abc Nome Não Autorizado"
@@ -93,3 +105,17 @@ export const criarNovaConsultaZero: IConsultZeroRequest = {
     historiaPregressa: "Adquire-se informações sobre toda a história médica do paciente, mesmo das condições que não estejam relacionadas com a doença atual",
     historiaGinecologicaObstetrica: "Se a paciente possuir histórico obstétrico, deve-se registrar o número de gestações ocorridas, o tipo de parto,  peso ao nascer, idade gestacional em que ocorreu o parto, ano em que o parto ocorreu, idade atual dos filhos e quaisquer problemas que tenham ocorrido durante gestações anteriores",
 }
+
+export const consult: IConsultRequest = {
+  conduta: "TESTE de APOINTMENT",
+  idadeGestacional: 1,
+  peso: 2,
+  pressaoArterial: "doze por oito",
+  apresentacao: "paciente está bem",
+  batimentoCardFetal: "doze por oito",
+  edema: "inchaço leve",
+  movimentacaoFetal: true,
+  retorno: "10-12-2022",
+  toqueVaginal: "realizado",
+  uteroFita: "30 cm ",
+};
