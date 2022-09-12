@@ -7,6 +7,7 @@ import appointmentCreateController from "../../controllers/consultas/apointmentC
 import { authTokenMiddleware } from "../../middlewares/authToken.middleware";
 import { isAdmMiddleware } from "../../middlewares/isAdm.middleware";
 import apointmentListOneController from "../../controllers/consultas/apointmentListOne.controller";
+import apointmentDeleteController from "../../controllers/consultas/apointmentDelete.controller";
 
 const appointment = Router();
 
@@ -26,7 +27,7 @@ export const appointmentRoutes = () => {
     apointmentListController
   );
 
-  appointment.delete("/:id");
+  appointment.delete("/:id", authTokenMiddleware, isAdmMiddleware, apointmentDeleteController);
 
   return appointment;
 };
