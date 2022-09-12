@@ -20,4 +20,4 @@ export interface ILabExamesRequest {
   urocult?: string
   strep?: string
   eletro?: string
-}
+  }
