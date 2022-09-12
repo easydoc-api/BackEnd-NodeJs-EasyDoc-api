@@ -2,7 +2,7 @@ import { DataSource } from "typeorm";
 import AppDataSource from "../../../data-source";
 import request from "supertest"
 import app from "../../../app";
-import { loginMedicoNormal, loginMedicoProfessor, medicoAtualizado, medicoAtualizadoCategoriaNormal, medicoNormal, medicoProfessor } from "../../mocks";
+import { loginMedicoNaoDono, loginMedicoNormal, loginMedicoProfessor, medicoAtualizado, medicoAtualizadoCategoriaNormal, medicoNormal, medicoNormalNaoDono, medicoProfessor } from "../../mocks";
 
 
 
@@ -22,6 +22,7 @@ describe("/medicos", () => {
     })
 
     test("POST /medicos/register - Possível cadastrar um médico", async () =>{
+        await request(app).post('/medicos/register').send(medicoNormalNaoDono)
         const res = await request(app).post('/medicos/register').send(medicoNormal)
 
         expect(res.body).toHaveProperty("nome")
@@ -58,7 +59,7 @@ describe("/medicos", () => {
         expect(res.status).toBe(201)
     })
 
-    test("POST /medicos/register -  Não é possível cadastrar um médico já cadastrado",async () => {
+    test("POST /medicos/register -  Não é possível cadastrar um médico já cadastrado", async () => {
         const response = await request(app).post('/medicos').send(medicoNormal)
 
         expect(response.body).toHaveProperty("message")
@@ -66,7 +67,7 @@ describe("/medicos", () => {
              
     })
     
-    test("POST /medicos/register -  Não é possível cadastrar um professor já cadastrado",async () => {
+    test("POST /medicos/register -  Não é possível cadastrar um professor já cadastrado", async () => {
         const response = await request(app).post('/medicos').send(medicoProfessor)
 
         expect(response.body).toHaveProperty("message")
@@ -133,11 +134,11 @@ describe("/medicos", () => {
     })
 
     test("PATCH /medicos/:id - Não é possível atualizar um médico sem autorização ou ADM", async () =>{
-        const medicoLoginResponse = await request(app).post("/login").send(medicoNormal);
-        const doctorTobeUpdated = await request(app).get('/medicos').set("Authorization", `Bearer ${medicoLoginResponse.body.token}`)
+        const outroLoginResponse = await request(app).post("/login").send(loginMedicoNaoDono);
+        const doctorTobeUpdated = await request(app).get('/medicos').set("Authorization", `Bearer ${outroLoginResponse.body.token}`)
 
         const res = await request(app).patch(`/medicos/${doctorTobeUpdated.body[0].id}`)
-        .send(medicoAtualizado).set("Authorization", `Bearer ${medicoLoginResponse.body.token}`)
+        .send(medicoAtualizado).set("Authorization", `Bearer ${outroLoginResponse.body.token}`)
 
         expect(res.status).toBe(401)
         expect(res.body).toHaveProperty("message")
@@ -157,9 +158,9 @@ describe("/medicos", () => {
     
     test("DELETE /medicos/:id -  Não é possível desativar um médico sem ser professor",async () => {
         const doctorLoginResponse = await request(app).post("/login").send(medicoNormal);
-        const doctorTobeDeleted = await request(app).get('/medico').set("Authorization", `Bearer ${doctorLoginResponse.body.token}`)
+        const doctorTobeDeleted = await request(app).get('/medicos').set("Authorization", `Bearer ${doctorLoginResponse.body.token}`)
 
-        const response = await request(app).delete(`/medico/${doctorTobeDeleted.body[0].id}`)
+        const response = await request(app).delete(`/medicos/${doctorTobeDeleted.body[0].id}`)
 
         expect(response.body).toHaveProperty("message")
         expect(response.status).toBe(401)
@@ -169,7 +170,7 @@ describe("/medicos", () => {
     test("DELETE /medicos/:id -  Não é possível desativar um médico com id inválido",async () => {
         const professorLoginResponse = await request(app).post("/login").send(loginMedicoProfessor);
         
-        const response = await request(app).delete(`/medico/13970660-5dbe-423a-9a9d-5c23b37943cf`).set("Authorization", `Bearer ${professorLoginResponse.body.token}`)
+        const response = await request(app).delete(`/medicos/13970660-5dbe-423a-9a9d-5c23b37943cf`).set("Authorization", `Bearer ${professorLoginResponse.body.token}`)
         expect(response.status).toBe(404)
         expect(response.body).toHaveProperty("message")
      

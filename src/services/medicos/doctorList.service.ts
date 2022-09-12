@@ -1,3 +1,4 @@
+import { instanceToPlain } from "class-transformer"
 import AppDataSource from "../../data-source"
 import { Medico } from "../../entities/medico.entity"
 
@@ -6,5 +7,5 @@ export const doctorListService = () =>{
 
     const employees = doctorRepository.find()
 
-    return employees
+    return instanceToPlain(employees)
 }
