@@ -22,7 +22,7 @@ app.use("/pacientes", patientRoutes())
 app.use("/consulta_zero", appointmentZeroRoutes())
 app.use("/consultas", appointmentRoutes())
 app.use("/exame_imagem", imageExamsRouter())
-app.use("/exame_laboratorial", labExamsRouter())
+app.use("/exames_laboratoriais", labExamsRouter())
 app.use("/prontuarios", prontuarioRoutes())
 app.use("/email", sendEmailRouter())
 

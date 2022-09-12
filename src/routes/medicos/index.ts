@@ -18,6 +18,7 @@ export const medicRoutes = () => {
   medic.get("", authTokenMiddleware, isAdmMiddleware, doctorListController) 
   medic.get("/:id", authTokenMiddleware, isAdmMiddleware, doctorListOneByIdController) 
   medic.patch("/:id", authTokenMiddleware, isAdmMiddleware, doctorUpdateController) 
-  medic.delete("/:id",authTokenMiddleware, isAdmMiddleware, doctorDeleteController) 
+  medic.delete("/:id", authTokenMiddleware, isAdmMiddleware, doctorDeleteController) 
+  
   return medic
 }

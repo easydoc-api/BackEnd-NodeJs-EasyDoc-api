@@ -4,9 +4,7 @@ import request from "supertest"
 import app from "../../../app";
 import { loginMedico, loginMedicoProfessor } from "../../mocks";
 
-
-
-describe("/medicos", () => {
+describe("ROUTES - /login", () => {
     let connection: DataSource
 
     beforeAll(async() => {

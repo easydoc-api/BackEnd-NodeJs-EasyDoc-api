@@ -9,8 +9,6 @@ const apointmentDeleteService = async (id: string) => {
 
   const target = apointment.find((apointment) => apointment.id === id);
 
-  console.log(target);
-
   if(target){
     await apointmentRepository.delete(id);
   }else{
