@@ -21,3 +21,4 @@ export interface ILabExamesRequest {
   strep?: string
   eletro?: string
 }
+
