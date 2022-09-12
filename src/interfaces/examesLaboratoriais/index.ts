@@ -9,9 +9,9 @@ export interface ILabExamesRequest {
   gpd?: string
   vdrl?: string
   hbsag?: string
-  anti_hiv?: string
-  anti_hcv?: string
-  anti_htlv?: string
+  antiHiv?: string
+  antiHcv?: string
+  antiHtlv?: string
   toxop?: string
   rubeola?: string
   cmv?: string
@@ -20,4 +20,5 @@ export interface ILabExamesRequest {
   urocult?: string
   strep?: string
   eletro?: string
-  }
+}
+
