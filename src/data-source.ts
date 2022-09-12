@@ -1,11 +1,11 @@
-import { DataSource } from "typeorm";
-import "dotenv/config";
+import { DataSource } from "typeorm"
+import "dotenv/config"
 
 const AppDataSource = new DataSource(
   {
     type: "postgres",
 
-    url: process.env.DB_URL,
+    url: process.env.DATABASE_URL,
 
     ssl:
       process.env.NODE_ENV === "production"
@@ -18,12 +18,12 @@ const AppDataSource = new DataSource(
 
     entities:
       process.env.NODE_ENV === "production"
-        ? ["dist/entities/*.js"]
+        ? ["dist/src/entities/*.js"]
         : ["src/entities/*.ts"],
 
     migrations:
       process.env.NODE_ENV === "production"
-        ? ["dist/migrations/*.js"]
+        ? ["dist/src/migrations/*.js"]
         : ["src/migrations/*.ts"],
   }
 
@@ -49,6 +49,6 @@ const AppDataSource = new DataSource(
   //     entities: ["src/entities/*.ts"],
   //     migrations: ["src/migrations/*.ts"],
   //   }
-);
+)
 
-export default AppDataSource;
+export default AppDataSource

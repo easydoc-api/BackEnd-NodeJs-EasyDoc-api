@@ -3,6 +3,7 @@ export interface IMedico {
   nome: string
   email: string
   senha: string
+  adm: boolean
   categoria: string
   criadoEm: Date
   atualizadoEm: Date
@@ -18,4 +19,11 @@ export interface IMedicoRequest {
 export interface IMedicoLogin {
   email: string
   senha: string
+}
+
+export interface IMedicoUpdate {
+  nome?: string
+  email?: string
+  senha?: string
+  categoria?: string
 }

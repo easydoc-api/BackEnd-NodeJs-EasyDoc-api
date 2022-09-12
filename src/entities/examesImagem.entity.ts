@@ -19,11 +19,14 @@ export class ExamesDeImagem {
   @UpdateDateColumn()
   atualizadoEm: Date
 
-  @Column({ length: 2000 })
-  laudo?: string
+  @Column({ 
+    length: 2000,
+    nullable: true
+   })
+  laudo: string
 
-  @Column()
-  anexos?: string
+  @Column({nullable: true})
+  anexos: string
 
   @ManyToOne(() => Prontuario, (prontuario) => prontuario.examesImagem)
   prontuario: Prontuario

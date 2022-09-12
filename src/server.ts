@@ -1,7 +1,7 @@
 import app from "./app"
 import AppDataSource from "./data-source"
-
-;(async () => {
+import "dotenv/config";
+(async () => {
   await AppDataSource.initialize().catch((err) => {
     console.error("Erro durante inicialização do Data Source", err)
   })
