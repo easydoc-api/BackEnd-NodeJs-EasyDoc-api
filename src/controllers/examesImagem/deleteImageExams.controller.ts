@@ -8,5 +8,5 @@ export const deleteImageExamsController = async (
   const { id } = req.params
   const exam = await deleteImageExamService(id)
 
-  return res.status(200).json({ message: "Exam deleted successfully!" })
+  return res.status(204).json({ message: "Exam deleted successfully!" })
 }
