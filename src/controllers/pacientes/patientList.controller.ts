@@ -1,0 +1,1 @@
+// Retorna uma lista com todos os pacientes cadastrados
