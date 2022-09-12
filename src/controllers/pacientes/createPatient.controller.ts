@@ -1,37 +1,12 @@
 import { instanceToPlain } from "class-transformer";
 import { Request, Response } from "express";
+import { IPacienteRequest } from "../../interfaces/pacientes";
 import { patientCreateService } from "../../services/pacientes/createPatient.service";
 
 export const patientCreateController = async (req: Request, res: Response) => {
-  const {
-    nome,
-    cpf,
-    email,
-    dataNascimento,
-    cidadeOrigem,
-    idade,
-    nomeDoBebe,
-    nomeDoPai,
-    diagnostico,
-    procedimentos,
-    cariotipo,
-    arquivos_id,
-  } = req.body;
 
-  const createdPatient = await patientCreateService({
-    nome,
-    cpf,
-    email,
-    dataNascimento,
-    cidadeOrigem,
-    idade,
-    nomeDoBebe,
-    nomeDoPai,
-    diagnostico,
-    procedimentos,
-    cariotipo,
-    arquivos_id,
-  });
+  const data = req.body
+  const createdPatient = await patientCreateService(data);
 
   return res.status(201).json(instanceToPlain(createdPatient));
 };

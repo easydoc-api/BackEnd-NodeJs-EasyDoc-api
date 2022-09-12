@@ -4,24 +4,24 @@ import { AppError } from "../../errors/AppError";
 import { IPacienteRequest } from "../../interfaces/pacientes";
 
 export const patientCreateService = async ({
-  nome,
-  cpf,
-  email,
-  dataNascimento,
   cidadeOrigem,
-  idade,
-  nomeDoBebe,
-  nomeDoPai,
+  cpf,
+  dataNascimento,
   diagnostico,
-  procedimentos,
+  idade,
+  nome,
   cariotipo,
-  arquivos_id,
+  email,
+  nomeBebe,
+  nomePai,
+  procedimentos,
+  arquivos,
 }: IPacienteRequest) => {
   const patientRepository = AppDataSource.getRepository(Paciente);
 
   const patientAlreadyExists = await patientRepository.findOne({
     where: {
-      cpf,
+      cpf: cpf,
     },
   });
 
@@ -30,20 +30,17 @@ export const patientCreateService = async ({
   } else {
     const newPatient = patientRepository.create({
       nome,
-      email,
+      cariotipo,
+      cidadeOrigem,
       cpf,
       dataNascimento,
-      cidadeOrigem,
-      idade,
-      nomeDoBebe,
-      nomeDoPai,
+      email,
       diagnostico,
+      idade,
+      nomeBebe,
+      nomePai,
       procedimentos,
-      cariotipo,
-      arquivos_id,
-      estaAtivo: true,
-      criadoEm: new Date(),
-      atualizadoEm: new Date(),
+      arquivos
     });
 
     await patientRepository.save(newPatient);
