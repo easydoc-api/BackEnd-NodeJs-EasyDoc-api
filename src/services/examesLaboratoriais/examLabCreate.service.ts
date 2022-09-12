@@ -1,6 +1,6 @@
-import AppDataSource from "../../data-source";
-import { ExamesLaboratoriais } from "../../entities/examesLaboratoriais.entity";
-import { ILabExamesRquest } from "../../interfaces/examesLaboratoriais";
+import AppDataSource from "../../data-source"
+import { ExamesLaboratoriais } from "../../entities/examesLaboratoriais.entity"
+import { ILabExamesRequest } from "../../interfaces/examesLaboratoriais"
 
 export const examLabCreateService = async ({
   gs_rh,
@@ -22,8 +22,8 @@ export const examLabCreateService = async ({
   urocult,
   strep,
   eletro,
-}: ILabExamesRquest) => {
-  const examLabRepository = AppDataSource.getRepository(ExamesLaboratoriais);
+}: ILabExamesRequest) => {
+  const examLabRepository = AppDataSource.getRepository(ExamesLaboratoriais)
 
   const examLab = examLabRepository.create({
     gs_rh,
@@ -45,9 +45,9 @@ export const examLabCreateService = async ({
     urocult,
     strep,
     eletro,
-  });
+  })
 
-  await examLabRepository.save(examLab);
+  await examLabRepository.save(examLab)
 
-  return examLab;
-};
+  return examLab
+}

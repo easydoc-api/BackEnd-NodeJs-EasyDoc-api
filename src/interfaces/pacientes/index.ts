@@ -10,7 +10,7 @@ export interface IPacienteRequest {
   diagnostico: string
   procedimentos?: string
   cariotipo?: string
-  arquivos_id?: Array<[]>
+  arquivos?: []
 }
 
 export interface IPacienteResponse {
@@ -28,7 +28,7 @@ export interface IPacienteResponse {
   criadoEm: Date
   atualizadoEm: Date
   estaAtivo: boolean
-  arquivos_id?: Array<[]>
+  arquivos_id?: []
 }
 
 export interface IPacienteUpdate {
@@ -43,5 +43,5 @@ export interface IPacienteUpdate {
   diagnostico?: string
   procedimentos?: string
   cariotipo?: string
-  arquivos_id?: Array<[]>
+  arquivos_id?: []
 }
