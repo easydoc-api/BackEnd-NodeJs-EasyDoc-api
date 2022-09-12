@@ -24,8 +24,8 @@ export const authTokenMiddleware = async (
       }
 
       req.user = {
-        adm: decoded.isAdm,
-        estaAtivo: decoded.isActive,
+        adm: decoded.adm,
+        estaAtivo: decoded.estaAtivo,
         id: decoded.id,
       }
     }
