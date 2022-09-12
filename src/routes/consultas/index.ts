@@ -6,6 +6,7 @@ import appointmentCreateController from "../../controllers/consultas/apointmentC
 
 import { authTokenMiddleware } from "../../middlewares/authToken.middleware";
 import { isAdmMiddleware } from "../../middlewares/isAdm.middleware";
+import apointmentListOneController from "../../controllers/consultas/apointmentListOne.controller";
 
 const appointment = Router();
 
@@ -16,7 +17,7 @@ export const appointmentRoutes = () => {
     appointmentCreateController
   );
 
-  appointment.get("/paciente/:id");
+  appointment.get("/paciente/:id", authTokenMiddleware, apointmentListOneController);
 
   appointment.get(
     "",
