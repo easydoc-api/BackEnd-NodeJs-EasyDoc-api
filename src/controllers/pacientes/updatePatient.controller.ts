@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { patientUpdateService } from "../../services/pacientes/updatePatient.service";
 
-export const doctorUpdateController = async (req: Request, res: Response) =>{
+export const patientUpdateController = async (req: Request, res: Response) =>{
     const {id} = req.params
     const data = req.body
 
