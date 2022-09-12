@@ -22,7 +22,7 @@ export const doctorUpdateService = async (
   }
 
   if (doctor.id !== doctorId && !adm) {
-    throw new AppError("You dont have authorization!", 409);
+    throw new AppError("You don't have authorization!", 409);
   }
 
   if (
