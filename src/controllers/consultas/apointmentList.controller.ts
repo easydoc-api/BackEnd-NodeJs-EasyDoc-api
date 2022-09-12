@@ -5,7 +5,7 @@ import apointmentListService from "../../services/consultas/apointmentList.servi
 const apointmentListController = async (req: Request, res: Response) => {
   const newAppoint = await apointmentListService();
 
-  return res.status(201).send(newAppoint);
+  return res.status(200).send(newAppoint);
 };
 
 export default apointmentListController;
