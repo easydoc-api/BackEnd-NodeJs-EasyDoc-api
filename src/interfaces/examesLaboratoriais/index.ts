@@ -1,4 +1,4 @@
-export interface ILabExamesRquest {
+export interface ILabExamesRequest {
   atualizadoEm: string
   data: Date
   gs_rh?: string
