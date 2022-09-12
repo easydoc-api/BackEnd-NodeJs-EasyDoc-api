@@ -2,7 +2,7 @@ import AppDataSource from "../../data-source";
 import { Consulta } from "../../entities/consulta.entity";
 import { AppError } from "../../errors/AppError";
 
-const apointmentDeleteService = async (id: string) => {
+export const apointmentDeleteService = async (id: string) => {
   const apointmentRepository = AppDataSource.getRepository(Consulta);
 
   const apointment = await apointmentRepository.find();
@@ -19,4 +19,3 @@ const apointmentDeleteService = async (id: string) => {
   return target;
 };
 
-export default apointmentDeleteService;
