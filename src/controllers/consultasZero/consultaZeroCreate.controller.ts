@@ -4,7 +4,7 @@ import { appointmentZeroCreateService } from '../../services/consultasZero/consu
 
 export const appointmentZeroCreateController = async (req: Request, res: Response) => {
   
-    const {paridade, consanguinidade, idadeGestacional, dataMenstruacao, primeiroUltrassom, semanaGestacional, diaGestacional, historiaPregressa, historiaGinecologicaObstetrica} = req.body
+    const { paridade, consanguinidade, idadeGestacional, dataMenstruacao, primeiroUltrassom, semanaGestacional, diaGestacional, historiaPregressa, historiaGinecologicaObstetrica } = req.body
 
     const newAppointmentZero = await appointmentZeroCreateService({paridade, consanguinidade, idadeGestacional, dataMenstruacao, primeiroUltrassom, semanaGestacional, diaGestacional, historiaPregressa, historiaGinecologicaObstetrica})
     
