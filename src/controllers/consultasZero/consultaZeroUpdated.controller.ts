@@ -13,7 +13,6 @@ export const appointmentZeroUpdatedController = async (req: Request, res: Respon
     throw new AppError("Id inválido", 422);
   }
 
-
   const updatedAppointmentZero = await appointmentZeroUpdatedService(data, id)
 
   return res.status(200).json(instanceToPlain(updatedAppointmentZero))
