@@ -8,7 +8,10 @@ import {
   IMedicoUpdate,
 } from "../../interfaces/medicos";
 import { IPacienteRequest, IPacienteUpdate } from "../../interfaces/pacientes";
-import { IImageExamesRequest, IImageExamesUpdate } from "../../interfaces/examesImagem";
+import {
+  IImageExamesRequest,
+  IImageExamesUpdate,
+} from "../../interfaces/examesImagem";
 
 export const medicoProfessor: IMedicoRequest = {
   nome: "Kamila",
@@ -60,10 +63,10 @@ export const loginMedico: IMedicoLogin = {
   senha: "123456333",
 };
 
-export const medicoAtualizadoLogin : IMedicoLogin = {
+export const medicoAtualizadoLogin: IMedicoLogin = {
   email: "ricardo@gmail.com",
   senha: "123456",
-}
+};
 
 export const loginMedicoNaoDono: IMedicoLogin = {
   email: "raony@gmail.com",
@@ -81,7 +84,7 @@ export const patiente: IPacienteRequest = {
   nomePai: "Matheus De Souza",
   diagnostico: "braço quebrado",
   procedimentos: "desquebrar o braço",
-  cariotipo: "banda g"
+  cariotipo: "banda g",
 };
 
 export const pacienteAtualizado: IPacienteUpdate = {
@@ -143,6 +146,21 @@ export const criarNovaConsultaZero: IConsultZeroRequest = {
     "Se a paciente possuir histórico obstétrico, deve-se registrar o número de gestações ocorridas, o tipo de parto,  peso ao nascer, idade gestacional em que ocorreu o parto, ano em que o parto ocorreu, idade atual dos filhos e quaisquer problemas que tenham ocorrido durante gestações anteriores",
 };
 
+export const listarNovaConsultaZero: IConsultZeroRequest = {
+  paridade: "1Paridade é o número de partos depois da 20ª semana.",
+  consanguinidade:
+    "Consanguinidade é a afinidade por laços de sangue entre indivíduos aparentados, que são geneticamente semelhantes.",
+  idadeGestacional: 12,
+  dataMenstruacao: "2022-12-09",
+  primeiroUltrassom: "2022-12-09",
+  semanaGestacional: 2,
+  diaGestacional: 12,
+  historiaPregressa:
+    "1Adquire-se informações sobre toda a história médica do paciente, mesmo das condições que não estejam relacionadas com a doença atual",
+  historiaGinecologicaObstetrica:
+    "Se a paciente possuir histórico obstétrico, deve-se registrar o número de gestações ocorridas, o tipo de parto,  peso ao nascer, idade gestacional em que ocorreu o parto, ano em que o parto ocorreu, idade atual dos filhos e quaisquer problemas que tenham ocorrido durante gestações anteriores",
+};
+
 export const consult: IConsultRequest = {
   conduta: "TESTE de APOINTMENT",
   idadeGestacional: 1,
@@ -157,12 +175,13 @@ export const consult: IConsultRequest = {
   uteroFita: "30 cm ",
 };
 
-export const examesDeImagemCompleto : IImageExamesRequest ={
-	laudo: `Em primeiro lugar, é importante definir o que é um laudo médico,
+export const examesDeImagemCompleto: IImageExamesRequest = {
+  laudo: `Em primeiro lugar, é importante definir o que é um laudo médico,
   pois muita gente o confunde com outros documentos, como o atestado médico.`,
-	anexos: "https://images.pexels.com/photos/207496/pexels-photo-207496.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-}
+  anexos:
+    "https://images.pexels.com/photos/207496/pexels-photo-207496.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+};
 
-export const examesDeImagemAtualizados : IImageExamesUpdate = {
-  laudo:"Paciente caiu da escada por estar de chinelo"
-}
+export const examesDeImagemAtualizados: IImageExamesUpdate = {
+  laudo: "Paciente caiu da escada por estar de chinelo",
+};
