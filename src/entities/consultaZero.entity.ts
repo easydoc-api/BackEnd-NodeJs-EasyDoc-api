@@ -17,10 +17,10 @@ export class ConsultaZero {
   @CreateDateColumn()
   data: Date
 
-  @Column({ length: 20 })
+  @Column({ length: 2000 })
   paridade: string
 
-  @Column({ length: 100 })
+  @Column({ length: 1000 })
   consanguinidade: string
 
   @Column()

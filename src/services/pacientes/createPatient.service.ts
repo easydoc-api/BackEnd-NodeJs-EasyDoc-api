@@ -15,7 +15,7 @@ export const patientCreateService = async ({
   nomeBebe,
   nomePai,
   procedimentos,
-  arquivos,
+  arquivos_id,
 }: IPacienteRequest) => {
   const patientRepository = AppDataSource.getRepository(Paciente);
 
@@ -40,7 +40,7 @@ export const patientCreateService = async ({
       nomeBebe,
       nomePai,
       procedimentos,
-      arquivos
+      arquivos_id
     });
 
     await patientRepository.save(newPatient);
