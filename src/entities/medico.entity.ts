@@ -18,14 +18,14 @@ export class Medico {
   @Column()
   atualizadoEm: Date
 
-  @Column({ length: 200 })
+  @Column({ length: 2000 })
   nome: string
 
-  @Column({ length: 200, unique: true })
+  @Column({ length: 2000, unique: true })
   email: string
 
   @Column({ length: 200 })
-  @Exclude()
+  @Exclude({toPlainOnly: true})
   senha: string
 
   @Column({ length: 200 })

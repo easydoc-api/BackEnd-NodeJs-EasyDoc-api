@@ -8,6 +8,15 @@ export const isAdmMiddleware = async (
 ) => {
 
   const {adm} = req.user
+ 
+
+  if(req.method === "PATCH"){
+    const {id} = req.user
+  
+    if(req.params.id === id){
+      return next()
+    }
+  }
 
   if(!adm){
     throw new AppError("You're not admin!", 403)

@@ -9,7 +9,7 @@ Uma aplicação para gerenciamento de hisórico de consultas de pacientes.
 Responsável por cadastrar um novo paciente. 
 
 **Requisitos**: 
-  - Autenticação: O usuário precisa apenas estar autenticado para poder cadastrar um paciente
+  - Autenticação: O usuário precisa estar autenticado para poder cadastrar um paciente
 
 Os dados solicitados pela API são:
 
@@ -77,7 +77,7 @@ Rotas responsável por apagar todos os dados de uma paciente. O usuário precisa
 
 ## Médico
 
-### POST – /medico/register
+### POST – /medicos/register
 Responsável por cadastrar um novo médico. Não é necessário autenticação nem permissão para se cadastrar
 
 **Requisitos:** 
@@ -106,21 +106,21 @@ Os dados solicitados pela API são:
 |401 |Falha na requisição |Falta algum dado na requisição. |
 |500 |Erro interno |Ocorreu uma instabilidade no Gateway, tente novamente em alguns segundos ou aciono o nosso suporte. | 
 
-### GET – /medico/
+### GET – /medicos/
 Responsável por listar todos os médicos. É necessário estar autenticado e permissão de ADM ou Professor
 
 **Requisitos:**
 - Autenticação
 - Ser ADM ou professor.
 
-###  GET – /medico/:id
+###  GET – /medicos/:id
 Responsável por listar um medico especifico por meio do ID. É necessário estar autenticado e permissão de ADM ou Professor.
 
 **Requisitos:** 
 - Autenticação
 - Ser ADM ou professor
 
-### PATCH – /medico/:id 
+### PATCH – /medicos/:id 
 Responsável por alterar os dados de um médico especifico. É necessário autenticação e apenas o próprio médico ou ADMs tem permissão.
 
 **Requisitos:** 
@@ -128,7 +128,7 @@ Responsável por alterar os dados de um médico especifico. É necessário auten
 - Ser o próprio usuário;
 - Ser ADM.
 
-### DELETE – /medico/id
+### DELETE – /medicos/id
 Rotas responsável por apagar todos os dados de um médico O usuário precisar estar autenticado e apenas ADMs podem deletar.
 
 **Requisitos:** 
@@ -148,18 +148,8 @@ Responsável por cadastra um novo exame.
 Os dados solicitados pela API são:
 
     {    
-    "Data": "20-10-1996" 
-    "idadeGestacional": 3 
-    "peso": 70 
-    "pressaoArterial": "12 por 8" 
-    "uteroFita": "30 cm" 
-    "apresentação": "" 
-    "movimentacaoFetal": true
-    "batimentoCardiacoFetal": "60 bpm" 
-    "edema": "problema circulatorio" 
-    "toqueVaginal": "" 
-    "conduta": "" 
-    "retorno": "12-10-2022"
+   	"laudo": "uma string",
+	"anexos": "strings"
     }
 
 | Campos NOT NULL | Mensagem |

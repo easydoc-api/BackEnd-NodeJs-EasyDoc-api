@@ -25,17 +25,17 @@ export class Consulta {
   @Column({ type: "decimal", precision: 4, scale: 3 })
   peso: number
 
-  @Column({ length: 50 })
+  @Column({ length: 500 })
   pressãoArterial: string
 
   @Column({ 
-    length: 10,
+    length: 1000,
     nullable: true
    })
   uteroFita: string
 
   @Column({ 
-    length: 10,
+    length: 1000,
     nullable: true
    })
   apresentacao: string
@@ -44,23 +44,23 @@ export class Consulta {
   movimentacaoFetal: boolean
 
   @Column({ 
-    length: 10,
+    length: 100,
     nullable: true
    })
   batimentoCardFetal: string
 
   @Column({ 
-    length: 10,
+    length: 1000,
     nullable: true
    })
   edema: string
 
-  @Column({ length: 200,
+  @Column({ length: 2000,
     nullable: true
    })
   toqueVaginal: string
 
-  @Column({ length: 200 })
+  @Column({ length: 2000 })
   conduta: string
 
   @Column({ 
@@ -68,6 +68,9 @@ export class Consulta {
     nullable: true
  })
   retorno: string
+
+  @Column({ default: true })
+  estaAtivo: boolean
 
   @ManyToOne(() => Prontuario, { eager: true })
   prontuario: Prontuario

@@ -34,6 +34,7 @@ export const createLoginService = async ({
     {
       adm: doctor.adm,
       estaAtivo: doctor.estaAtivo,
+      id: doctor.id
     },
     process.env.SECRET_KEY as string,
     {
