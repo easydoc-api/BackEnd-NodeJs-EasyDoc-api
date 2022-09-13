@@ -6,5 +6,5 @@ import { allChartListService } from "../../services/prontuarios/chartList.servic
 export const allChartsListController = async (req: Request, res: Response) => {
   const allCharts = await allChartListService();
 
-  return res.json(allCharts);
+  return res.status(200).json(allCharts);
 };

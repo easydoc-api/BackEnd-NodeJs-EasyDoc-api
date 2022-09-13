@@ -12,9 +12,13 @@ export const chartListByAgeGestationalService = async ({
   const chartRepository = AppDataSource.getRepository(Prontuario);
   const zeroQueryRepository = AppDataSource.getRepository(ConsultaZero);
 
-  const ageGestational = await zeroQueryRepository.find();
+  const ageGestational = await chartRepository.findOne({
+    where: {},
+  });
 
   if (!ageGestational) {
     throw new AppError("Age Gestational not found", 404);
   }
+
+  return ageGestational;
 };
