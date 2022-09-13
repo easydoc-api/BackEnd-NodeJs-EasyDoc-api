@@ -28,16 +28,21 @@ describe("/consultas", () => {
   });
 
   test("POST /consultas/register - Possível cadastrar uma consulta", async () => {
+    await request(app).post('/medicos/register').send(medicoProfessor)
+
     const professorLoginResponse = await request(app)
       .post("/login")
       .send(loginMedicoProfessor);
+
     const res = await request(app)
       .post("/consultas/register")
       .send(consult)
       .set("Authorization", `Bearer ${professorLoginResponse.body.token}`);
 
+      console.log(res.body)
+
     expect(res.body).toHaveProperty("peso");
-    expect(res.body).toHaveProperty("pressãoArterial");
+    expect(res.body).toHaveProperty("pressaoArterial");
     expect(res.body).toHaveProperty("uteroFita");
     expect(res.body).toHaveProperty("apresentacao");
     expect(res.body).toHaveProperty("movimentacaoFetal");
@@ -70,31 +75,31 @@ describe("/consultas", () => {
     expect(response.status).toBe(401);
   });
 
-  test("GET /consultas/pacientes/:id - É possível listar uma consulta pelo id do paciente", async () => {
+  test("GET /consultas/paciente/:id - É possível listar uma consulta pelo id do paciente", async () => {
+    
     const professorLoginResponse = await request(app)
       .post("/login")
       .send(medicoProfessor);
-    const paciente = await request(app)
-      .get("/pacientes")
+
+    const consultas = await request(app)
+      .get("/consultas")
       .set("Authorization", `Bearer ${professorLoginResponse.body.token}`);
 
     const res = await request(app)
-      .get(`/consultas/pacientes/${paciente.body.id}`)
-      .send(paciente)
+      .get(`/consultas/paciente/${consultas.body[0].id}`)
       .set("Authorization", `Bearer ${professorLoginResponse.body.token}`);
 
-    expect(res.body[0]).toHaveProperty("peso");
-    expect(res.body[0]).toHaveProperty("pressaoArterial");
-    expect(res.body[0]).toHaveProperty("uteroFita");
-    expect(res.body[0]).toHaveProperty("apresentação");
-    expect(res.body[0]).toHaveProperty("movimentacaoFetal");
-    expect(res.body[0]).toHaveProperty("batimentoCardiacoFetal");
-    expect(res.body[0]).toHaveProperty("edema");
-    expect(res.body[0]).toHaveProperty("toqueVaginal");
-    expect(res.body[0]).toHaveProperty("conduta");
-    expect(res.body[0]).toHaveProperty("retorno");
+    expect(res.body).toHaveProperty("peso");
+    expect(res.body).toHaveProperty("pressaoArterial");
+    expect(res.body).toHaveProperty("uteroFita");
+    expect(res.body).toHaveProperty("apresentacao");
+    expect(res.body).toHaveProperty("movimentacaoFetal");
+    expect(res.body).toHaveProperty("batimentoCardFetal");
+    expect(res.body).toHaveProperty("edema");
+    expect(res.body).toHaveProperty("toqueVaginal");
+    expect(res.body).toHaveProperty("conduta");
+    expect(res.body).toHaveProperty("retorno");
     expect(res.status).toBe(200);
-    expect(res.body).toHaveLength(1);
   });
 
   test("GET /consultas/paciente/:id - Não é possível listar uma consulta pelo id do paciente sem autorização", async () => {

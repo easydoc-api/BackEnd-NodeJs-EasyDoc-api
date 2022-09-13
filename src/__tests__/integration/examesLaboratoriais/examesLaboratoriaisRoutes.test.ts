@@ -7,7 +7,9 @@ import {
   examesLaboratoriaisAtualizados,
   loginMedicoNormal,
   loginMedicoProfessor,
+  loginMedicoProfessorSemAtualizar,
   medicoProfessor,
+  medicoProfessorSemAtualizar,
   patiente,
 } from "../../mocks";
 
@@ -29,8 +31,8 @@ describe("/examesLaboratoriais", () => {
   });
 
   test("POST /exames_laboratoriais/register - Possível criar um exame laboratorial", async () => {
-    await request(app).post("/medicos/register").send(medicoProfessor);
-    const login = await request(app).post("/login").send(loginMedicoProfessor);
+    await request(app).post("/medicos/register").send(medicoProfessorSemAtualizar);
+    const login = await request(app).post("/login").send(loginMedicoProfessorSemAtualizar);
     const res = await request(app)
       .post("/exames_laboratoriais/register")
       .send(examesLaboratoriais)
@@ -88,7 +90,7 @@ describe("/examesLaboratoriais", () => {
   test("GET /exames_laboratoriais - Possível listar todos os exames", async () => {
     const loginProfessor = await request(app)
       .post("/login")
-      .send(loginMedicoProfessor);
+      .send(loginMedicoProfessorSemAtualizar);
     const res = await request(app)
       .get("/exames_laboratoriais")
       .set("Authorization", `Bearer ${loginProfessor.body.token}`);
@@ -107,7 +109,7 @@ describe("/examesLaboratoriais", () => {
   test("GET /exames_laboratoriais/paciente/:id - Possível listar um exame de um paciente com autorização", async () => {
     const loginProfessor = await request(app)
       .post("/login")
-      .send(loginMedicoProfessor);
+      .send(loginMedicoProfessorSemAtualizar);
 
     const exameSelecionado = await request(app)
       .get("/exames_laboratoriais")
@@ -145,10 +147,10 @@ describe("/examesLaboratoriais", () => {
   test("GET /exames_laboratoriais/paciente/:id - Não é possível atualizar um exame de um paciente sem autorização", async () => {
     const loginMedico = await request(app)
       .post("/login")
-      .send(loginMedicoProfessor);
+      .send(loginMedicoProfessorSemAtualizar);
 
     const exameSelecionado = await request(app)
-      .get("/pacientes")
+      .get("/exames_laboratoriais")
       .set("Authorization", `Bearer ${loginMedico.body.token}`);
 
     const res = await request(app).get(
@@ -162,7 +164,7 @@ describe("/examesLaboratoriais", () => {
   test("GET /exames_laboratoriais/paciente/:id - Não é possível listar exames de um paciente com id inválido", async () => {
     const loginProfessor = await request(app)
       .post("/login")
-      .send(loginMedicoProfessor);
+      .send(loginMedicoProfessorSemAtualizar);
 
     const res = await request(app)
       .get(
@@ -178,7 +180,7 @@ describe("/examesLaboratoriais", () => {
   test("PATCH /exames_laboratoriais/paciente/:id - Possível atualizar um exame de um paciente com autorização", async () => {
     const loginProfessor = await request(app)
       .post("/login")
-      .send(loginMedicoProfessor);
+      .send(loginMedicoProfessorSemAtualizar);
 
     const exameSelecionado = await request(app)
       .get("/exames_laboratoriais")
@@ -212,7 +214,7 @@ describe("/examesLaboratoriais", () => {
   test("PATCH /exames_laboratoriais - Não é possível atualizar os exames sem autorização", async () => {
     const loginMedico = await request(app)
       .post("/login")
-      .send(loginMedicoProfessor);
+      .send(loginMedicoProfessorSemAtualizar);
 
     const exameSelecionado = await request(app)
       .get("/exames_laboratoriais")
@@ -229,7 +231,7 @@ describe("/examesLaboratoriais", () => {
   test("PATCH /exames_laboratoriais/:id - Não é possível listar exames de um paciente com id inválido", async () => {
     const loginProfessor = await request(app)
       .post("/login")
-      .send(loginMedicoProfessor);
+      .send(loginMedicoProfessorSemAtualizar);
 
     const res = await request(app)
       .patch(
