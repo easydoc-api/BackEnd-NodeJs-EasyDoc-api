@@ -1,4 +1,7 @@
 import { ILabExamesRequest } from "../../interfaces/examesLaboratoriais";
+import { IConsultZeroRequest } from "../../interfaces/consultasZero"
+import { IConsultRequest } from "../../interfaces/consultas";
+
 import {
   IMedicoLogin,
   IMedicoRequest,
@@ -11,6 +14,12 @@ export const medicoProfessor: IMedicoRequest = {
   email: "kamila@gmail.com",
   senha: "123456",
   categoria: "R4",
+};
+
+export const medicoAtualizado: IMedicoUpdate = {
+  nome: "Ricardo",
+  email: "ricardo@gmail.com",
+  categoria: "Professor",
 };
 
 export const loginMedicoProfessor: IMedicoLogin = {
@@ -117,4 +126,30 @@ export const examesLaboratoriaisAtualizados: ILabExamesRequest = {
     cmv: "b",
     tsh: "b",
     eas: "b",
+}
+
+export const criarNovaConsultaZero: IConsultZeroRequest = {
+    paridade: "Paridade é o número de partos depois da 20ª semana.",
+    consanguinidade: "Consanguinidade é a afinidade por laços de sangue entre indivíduos aparentados, que são geneticamente semelhantes.",
+    idadeGestacional: 12,
+    dataMenstruacao: "2022-12-09",
+    primeiroUltrassom: "2022-12-09",
+    semanaGestacional: 2,
+    diaGestacional: 12,
+    historiaPregressa: "Adquire-se informações sobre toda a história médica do paciente, mesmo das condições que não estejam relacionadas com a doença atual",
+    historiaGinecologicaObstetrica: "Se a paciente possuir histórico obstétrico, deve-se registrar o número de gestações ocorridas, o tipo de parto,  peso ao nascer, idade gestacional em que ocorreu o parto, ano em que o parto ocorreu, idade atual dos filhos e quaisquer problemas que tenham ocorrido durante gestações anteriores",
+}
+
+export const consult: IConsultRequest = {
+  conduta: "TESTE de APOINTMENT",
+  idadeGestacional: 1,
+  peso: 2,
+  pressaoArterial: "doze por oito",
+  apresentacao: "paciente está bem",
+  batimentoCardFetal: "doze por oito",
+  edema: "inchaço leve",
+  movimentacaoFetal: true,
+  retorno: "10-12-2022",
+  toqueVaginal: "realizado",
+  uteroFita: "30 cm ",
 };

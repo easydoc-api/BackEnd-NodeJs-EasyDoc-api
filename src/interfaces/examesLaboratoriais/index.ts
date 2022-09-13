@@ -43,3 +43,4 @@ export interface ILabExamesResponse {
   strep?: string;
   eletro?: string;
 }
+

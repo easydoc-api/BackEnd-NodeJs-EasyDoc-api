@@ -2,7 +2,7 @@ import AppDataSource from "../../data-source";
 
 import { Consulta } from "../../entities/consulta.entity";
 
-const apointmentListService = () => {
+export const apointmentListService = () => {
   const apointmentRepository = AppDataSource.getRepository(Consulta);
 
   const apointment = apointmentRepository.find();
@@ -10,4 +10,3 @@ const apointmentListService = () => {
   return apointment;
 };
 
-export default apointmentListService;

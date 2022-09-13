@@ -23,6 +23,7 @@ export const examLabCreateService = async ({
   strep,
   eletro,
 }: ILabExamesRequest) => {
+
   const examLabRepository = AppDataSource.getRepository(ExamesLaboratoriais);
 
   const examLab = examLabRepository.create({
@@ -47,9 +48,9 @@ export const examLabCreateService = async ({
     urocult,
     strep,
     eletro,
-  });
+  })
 
-  await examLabRepository.save(examLab);
+  await examLabRepository.save(examLab)
 
-  return examLab;
-};
+  return examLab
+}

@@ -6,7 +6,7 @@ const AppDataSource =
   {
     type: "postgres",
 
-    url: process.env.DATABASE_URL,
+    url: process.env.DB_URL,
 
     ssl:
       process.env.NODE_ENV === "production"

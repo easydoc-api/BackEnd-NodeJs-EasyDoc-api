@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
 
-import apointmentListService from "../../services/consultas/apointmentList.service";
+import {apointmentListService} from "../../services/consultas/apointmentList.service";
 
-const apointmentListOneController = async (req: Request, res: Response) => {
+export const apointmentListOneController = async (req: Request, res: Response) => {
   const { id } = req.params;
   const apointments = await apointmentListService();
 
@@ -14,4 +14,3 @@ const apointmentListOneController = async (req: Request, res: Response) => {
   return res.status(404).send({ message: "could not find apointment" });
 };
 
-export default apointmentListOneController;
