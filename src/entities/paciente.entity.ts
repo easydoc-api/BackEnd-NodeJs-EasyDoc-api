@@ -44,13 +44,13 @@ export class Paciente {
   idade: number
 
   @Column({ 
-    length: 200, 
+    length: 2000, 
     nullable: true 
   })
   nomeBebe: string
 
   @Column({ 
-    length: 200, 
+    length: 2000, 
     nullable: true 
   })
   nomePai: string
@@ -62,7 +62,7 @@ export class Paciente {
   procedimentos: string
 
   @Column({ 
-    length: 20, 
+    length: 200, 
     nullable: true 
   })
   cariotipo: string
@@ -77,5 +77,5 @@ export class Paciente {
   prontuario: Prontuario
 
   @OneToMany(() => Arquivos, (arquivos) => arquivos.paciente)
-  arquivos: Arquivos[]
+  arquivos_id: Arquivos[]
 }
