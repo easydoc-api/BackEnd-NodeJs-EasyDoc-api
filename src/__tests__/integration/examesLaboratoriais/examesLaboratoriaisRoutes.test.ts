@@ -11,7 +11,7 @@ import {
   patiente,
 } from "../../mocks";
 
-describe("/medicos", () => {
+describe("/examesLaboratoriais", () => {
   let connection: DataSource;
 
   beforeAll(async () => {
@@ -81,44 +81,8 @@ describe("/medicos", () => {
       .post("/exames_laboratoriais/register")
       .send(examesLaboratoriais);
 
-    expect(res.body).toHaveProperty("gs_rh");
-    expect(res.body).toHaveProperty("coombs");
-    expect(res.body).toHaveProperty("hb_ht");
-    expect(res.body).toHaveProperty("plaq");
-    expect(res.body).toHaveProperty("gj");
-    expect(res.body).toHaveProperty("gpd");
-    expect(res.body).toHaveProperty("vdrl");
-    expect(res.body).toHaveProperty("hbsag");
-    expect(res.body).toHaveProperty("antiHiv");
-    expect(res.body).toHaveProperty("antiHcv");
-    expect(res.body).toHaveProperty("antiHtlv");
-    expect(res.body).toHaveProperty("toxop");
-    expect(res.body).toHaveProperty("rubeola");
-    expect(res.body).toHaveProperty("cmv");
-    expect(res.body).toHaveProperty("tsh");
-    expect(res.body).toHaveProperty("eas");
-    expect(res.body).toHaveProperty("urocult");
-    expect(res.body).toHaveProperty("strep");
-    expect(res.body).toHaveProperty("eletro");
-    expect(res.body.gs_rh).toEqual("a");
-    expect(res.body.coombs).toEqual("a");
-    expect(res.body.hb_ht).toEqual("a");
-    expect(res.body.plaq).toEqual("a");
-    expect(res.body.gj).toEqual("a");
-    expect(res.body.gpd).toEqual("a");
-    expect(res.body.vdrl).toEqual("a");
-    expect(res.body.hbsag).toEqual("a");
-    expect(res.body.antiHiv).toEqual("a");
-    expect(res.body.antiHcv).toEqual("a");
-    expect(res.body.antiHtlv).toEqual("a");
-    expect(res.body.toxop).toEqual("a");
-    expect(res.body.rubeola).toEqual("a");
-    expect(res.body.cmv).toEqual("a");
-    expect(res.body.tsh).toEqual("a");
-    expect(res.body.eas).toEqual("a");
-    expect(res.body.urocult).toEqual("a");
-    expect(res.body.strep).toEqual("a");
-    expect(res.body.eletro).toEqual("a");
+    expect(res.body).toHaveProperty("message");
+    expect(res.status).toBe(401);
   });
 
   test("GET /exames_laboratoriais - Possível listar todos os exames", async () => {
@@ -141,15 +105,19 @@ describe("/medicos", () => {
   });
 
   test("GET /exames_laboratoriais/paciente/:id - Possível listar um exame de um paciente com autorização", async () => {
-    const patienteAtualizado = await request(app)
-      .post("/pacientes/register")
-      .send(patiente);
-    const login = await request(app).post("/login").send(loginMedicoProfessor);
+    const loginProfessor = await request(app)
+      .post("/login")
+      .send(loginMedicoProfessor);
+
+    const exameSelecionado = await request(app)
+      .get("/exames_laboratoriais")
+      .set("Authorization", `Bearer ${loginProfessor.body.token}`);
 
     const res = await request(app)
-      .get(`/exames_laboratoriais/paciente/${patienteAtualizado.body[0].id}`)
-      .set("Authorization", `Bearer ${login.body.token}`);
+      .get(`/exames_laboratoriais/paciente/${exameSelecionado.body[0].id}`)
+      .set("Authorization", `Bearer ${loginProfessor.body.token}`);
 
+    expect(res.body).toHaveProperty("id");
     expect(res.body).toHaveProperty("gs_rh");
     expect(res.body).toHaveProperty("coombs");
     expect(res.body).toHaveProperty("hb_ht");
@@ -169,19 +137,22 @@ describe("/medicos", () => {
     expect(res.body).toHaveProperty("urocult");
     expect(res.body).toHaveProperty("strep");
     expect(res.body).toHaveProperty("eletro");
-    expect(res.body).toHaveProperty("paciente_id");
+    expect(res.body).toHaveProperty("estaAtivo");
+    expect(res.body).toHaveProperty("atualizadoEm");
+    expect(res.body).toHaveProperty("data");
   });
 
   test("GET /exames_laboratoriais/paciente/:id - Não é possível atualizar um exame de um paciente sem autorização", async () => {
     const loginMedico = await request(app)
       .post("/login")
       .send(loginMedicoProfessor);
-    const patienteAtualizado = await request(app)
+
+    const exameSelecionado = await request(app)
       .get("/pacientes")
       .set("Authorization", `Bearer ${loginMedico.body.token}`);
 
     const res = await request(app).get(
-      `/exames_laboratoriais/paciente/${patienteAtualizado.body[0].id}`
+      `/exames_laboratoriais/paciente/${exameSelecionado.body[0].id}`
     );
 
     expect(res.body).toHaveProperty("message");
@@ -208,12 +179,13 @@ describe("/medicos", () => {
     const loginProfessor = await request(app)
       .post("/login")
       .send(loginMedicoProfessor);
-    const patienteAtualizado = await request(app)
-      .get("/pacientes")
+
+    const exameSelecionado = await request(app)
+      .get("/exames_laboratoriais")
       .set("Authorization", `Bearer ${loginProfessor.body.token}`);
 
     const res = await request(app)
-      .patch(`/exames_laboratoriais/paciente/${patienteAtualizado.body[0].id}`)
+      .patch(`/exames_laboratoriais/${exameSelecionado.body[0].id}`)
       .send(examesLaboratoriaisAtualizados)
       .set("Authorization", `Bearer ${loginProfessor.body.token}`);
 
@@ -240,13 +212,14 @@ describe("/medicos", () => {
   test("PATCH /exames_laboratoriais - Não é possível atualizar os exames sem autorização", async () => {
     const loginMedico = await request(app)
       .post("/login")
-      .send(loginMedicoNormal);
-    const patienteAtualizado = await request(app)
-      .get("/pacietnes")
+      .send(loginMedicoProfessor);
+
+    const exameSelecionado = await request(app)
+      .get("/exames_laboratoriais")
       .set("Authorization", `Bearer ${loginMedico.body.token}`);
 
     const res = await request(app)
-      .patch(`/exames_laboratoriais/patiente/${patienteAtualizado.body.id}`)
+      .patch(`/exames_laboratoriais/${exameSelecionado.body[0].id}`)
       .send(examesLaboratoriaisAtualizados);
 
     expect(res.body).toHaveProperty("message");
@@ -260,7 +233,7 @@ describe("/medicos", () => {
 
     const res = await request(app)
       .patch(
-        `/exames_laboratoriais/paciente/13970660-5dbe-423a-9a9d-5c23b37943cf`
+        `/exames_laboratoriais/13970660-5dbe-423a-9a9d-5c23b37943cf`
       )
       .send(examesLaboratoriaisAtualizados)
       .set("Authorization", `Bearer ${loginProfessor.body.token}`);
