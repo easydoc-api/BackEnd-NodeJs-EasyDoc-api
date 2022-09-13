@@ -19,7 +19,7 @@ export const labExamsRouter = () => {
     authTokenMiddleware,
     examLabListOneByIdController
   );
-  labExams.patch("/:id", examLabUpdateController);
+  labExams.patch("/:id", authTokenMiddleware, examLabUpdateController);
   labExams.delete(
     "/:id",
     authTokenMiddleware,
