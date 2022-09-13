@@ -14,7 +14,7 @@ import {
   medicoProfessor,
 } from "../../mocks"
 
-describe("/medicos", () => {
+describe("/consulta_zero", () => {
   let connection: DataSource
 
   beforeAll(async () => {
