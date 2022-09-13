@@ -5,28 +5,27 @@ import { IAppointmentZeroUpdated } from "../../interfaces/consultasZero";
 
 export const appointmentZeroUpdatedService = async (
   data: IAppointmentZeroUpdated,
-  id: string,
-  )  => {
+  id: string
+) => {
+  const appointmentZeroRepository = AppDataSource.getRepository(ConsultaZero);
 
-    const appointmentZeroRepository = AppDataSource.getRepository(ConsultaZero)
+  const appointmentZero = await appointmentZeroRepository.findOne({
+    where: {
+      id,
+    },
+  });
 
-    const appointmentZero = await appointmentZeroRepository.findOne({
-      where: {
-        id
-      }
-    })
-
-    if(!appointmentZero){
-      throw new AppError("Consulta não encontrada", 404);
-    }
-
-    const updatedAppointmentZero = {
-      ...appointmentZero,
-      ...data,
-      atulizadoEm: new Date()
-    }
-
-    await appointmentZeroRepository.save(updatedAppointmentZero)
-   
-    return updatedAppointmentZero
+  if (!appointmentZero) {
+    throw new AppError("Consulta não encontrada", 404);
   }
+
+  const updatedAppointmentZero = {
+    ...appointmentZero,
+    ...data,
+    atulizadoEm: new Date(),
+  };
+
+  await appointmentZeroRepository.save(updatedAppointmentZero);
+
+  return updatedAppointmentZero;
+};
