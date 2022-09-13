@@ -17,15 +17,15 @@ export const appointmentRoutes = () => {
     authTokenMiddleware,
     appointmentCreateController
   );
-
-  appointment.get("/paciente/:id", authTokenMiddleware, apointmentListOneController);
-
+  
   appointment.get(
     "",
     authTokenMiddleware,
     isAdmMiddleware,
     apointmentListController
   );
+  
+  appointment.get("/paciente/:id", authTokenMiddleware, apointmentListOneController);
 
   appointment.delete("/:id", authTokenMiddleware, isAdmMiddleware, apointmentDeleteController);
 
