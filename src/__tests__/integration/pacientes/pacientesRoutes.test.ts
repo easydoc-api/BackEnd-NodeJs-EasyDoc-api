@@ -4,7 +4,7 @@ import request from "supertest"
 import app from "../../../app";
 import { loginMedicoProfessor, medicoNormal, medicoProfessor, pacienteAtualizado, pacienteAtualizadoSemPermissao, patiente } from "../../mocks";
 
-describe("/patientes", () => {
+describe("ROUTES - /patientes", () => {
     let connection: DataSource
 
     beforeAll(async() => {
@@ -22,6 +22,7 @@ describe("/patientes", () => {
     test("POST /pacientes/register - Possível criar um paciente", async () =>{
         const response = await request(app).post('/pacientes/register').send(patiente)
 
+        expect(response.status).toBe(201)
         expect(response.body).toHaveProperty('nome')
         expect(response.body).toHaveProperty('cpf')
         expect(response.body).toHaveProperty('email')
@@ -33,13 +34,6 @@ describe("/patientes", () => {
         expect(response.body).toHaveProperty('diagnostico')
         expect(response.body).toHaveProperty('procedimentos')
         expect(response.body).toHaveProperty('cariotipo')
-        expect(response.body.name).toEqual("Matheus De Souza")
-        expect(response.body.cpf).toEqual("123.456.789-10")
-        expect(response.body.email).toEqual("pedro@gmail.com")
-        expect(response.body.cidadeOrigem).toEqual("Piracicaba")
-        expect(response.body.nomeDoPai).toEqual("Matheus De Souza")
-        expect(response.body.nomeDoBebe).toEqual("Enzo da Silva")
-        expect(response.status).toBe(201)
         
     })
 
@@ -51,8 +45,7 @@ describe("/patientes", () => {
     })
 
     test("GET /pacientes -  Possível listar todos os pacientes", async () => {
-        await request(app).post('/medico/register').send(medicoProfessor)
-        await request(app).post('/pacientes').send(patiente) 
+        await request(app).post('/medicos/register').send(medicoProfessor) 
 
         const professorLoginResponse = await request(app).post("/login").send(medicoProfessor);
         const response = await request(app).get('/pacientes').set("Authorization", `Bearer ${professorLoginResponse.body.token}`)

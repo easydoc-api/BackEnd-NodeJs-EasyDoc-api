@@ -23,6 +23,7 @@ export const examLabUpdateService = async (
   const updatedLabExam = {
     ...selectedExamLab,
     ...data,
+    atualizadoEm: new Date()
   };
 
   await examLabRepository.save(updatedLabExam);

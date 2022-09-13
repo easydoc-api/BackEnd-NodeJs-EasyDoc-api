@@ -25,7 +25,7 @@ export class Medico {
   email: string
 
   @Column({ length: 200 })
-  @Exclude()
+  @Exclude({toPlainOnly: true})
   senha: string
 
   @Column({ length: 200 })

@@ -19,7 +19,7 @@ export const doctorCreateService = async ({
   })
  
   if (doctorAlreadyExists) {
-    throw new AppError("Doctor is already registered!", 409)
+    throw new AppError("Doctor is already registered!", 400)
   }
   
   const hashedPassword = await hash(senha, 10)

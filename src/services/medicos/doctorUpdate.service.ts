@@ -22,7 +22,7 @@ export const doctorUpdateService = async (
   }
 
   if (doctor.id !== doctorId && !adm) {
-    throw new AppError("You don't have authorization!", 409);
+    throw new AppError("You're not the owner!", 409);
   }
 
   if (
@@ -43,5 +43,11 @@ export const doctorUpdateService = async (
 
   await doctorRepository.save(updatedDoctor);
 
-  return updatedDoctor;
+  const result = await doctorRepository.findOne({
+    where: {
+      id,
+    },
+  });
+
+  return result
 };
