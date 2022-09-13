@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { AppError } from "../../errors/AppError";
 
 import {apointmentListService} from "../../services/consultas/apointmentList.service";
 
@@ -10,7 +11,8 @@ export const apointmentListOneController = async (req: Request, res: Response) =
 
   if (apointment) {
     return res.status(200).send(apointment);
+  }else{
+    throw new AppError("could not find patient",  404)
   }
-  return res.status(404).send({ message: "could not find apointment" });
 };
 
