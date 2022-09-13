@@ -14,17 +14,19 @@ Responsável por cadastrar um novo paciente.
 Os dados solicitados pela API são:
 
     {
-    "nome": "pedro",
-    "dataNascimento": "01/01/2000",
-    "cidadeOrigem": "piracicaba", 
-    "idade": "22",
-    "nomeBebe": "",
-    "nomePai": "",
-    "diagnostico": "braço quebrado", 
-    "procedimentos": "desquebrar o braço",
-    "caritotipo": "banda g",
-    "anexos": 
-	}
+   	"nome": "",
+	"dataNascimento": "01/01/2000",
+	"cidadeOrigem": "", 
+	"idade": 22,
+	"nomeBebe": "",
+	"nomePai": "",
+	"diagnostico": "", 
+	"procedimentos": "",
+	"caritotipo": "",
+	"cpf": "",
+	"email": "", 
+	"arquivos_id": ""
+    }
 
 | Campos NOT NULL | Mensagem |
 |--|--|
