@@ -30,4 +30,7 @@ export class ExamesDeImagem {
 
   @ManyToOne(() => Prontuario, (prontuario) => prontuario.examesImagem)
   prontuario: Prontuario
+
+  @Column({ default: true })
+  estaAtivo: boolean
 }

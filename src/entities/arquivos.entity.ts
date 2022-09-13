@@ -23,4 +23,7 @@ export class Arquivos {
     nullable: false,
   })
   paciente: Paciente
+
+  @Column({ default: true })
+  estaAtivo: boolean
 }

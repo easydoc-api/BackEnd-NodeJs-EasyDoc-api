@@ -76,6 +76,6 @@ export class Paciente {
   })
   prontuario: Prontuario
 
-  @OneToMany(() => Arquivos, (arquivos) => arquivos.paciente)
+  @OneToMany((type) => Arquivos, (arquivos) => arquivos.paciente, { nullable: false })
   arquivos: Arquivos[]
 }

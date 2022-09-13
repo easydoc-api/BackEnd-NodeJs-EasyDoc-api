@@ -14,5 +14,5 @@ export const newPatientSchema: SchemaOf<IPacienteRequest> = yup.object().shape({
   diagnostico: yup.string().required(),
   procedimentos: yup.string(),
   cariotipo: yup.string(),
-  arquivos_id: yup.array(),
+  arquivos: yup.array()
 })
