@@ -4,7 +4,6 @@ export interface IImageExamesRequest {
 }
 
 export interface IImageExamesUpdate {
-  id: string
   laudo?: string
   anexos?: string
 }

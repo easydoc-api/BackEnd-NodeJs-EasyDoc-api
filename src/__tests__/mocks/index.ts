@@ -8,6 +8,7 @@ import {
   IMedicoUpdate,
 } from "../../interfaces/medicos";
 import { IPacienteRequest, IPacienteUpdate } from "../../interfaces/pacientes";
+import { IImageExamesRequest, IImageExamesUpdate } from "../../interfaces/examesImagem";
 
 export const medicoProfessor: IMedicoRequest = {
   nome: "Kamila",
@@ -52,6 +53,11 @@ export const medicoAtualizadoCategoriaNormal: IMedicoUpdate = {
 export const loginMedicoNormal: IMedicoLogin = {
   email: "cayo@gmail.com",
   senha: "123456",
+};
+
+export const loginMedico: IMedicoLogin = {
+  email: "cayoooooo@gmail.com",
+  senha: "123456333",
 };
 
 export const medicoAtualizadoLogin : IMedicoLogin = {
@@ -150,3 +156,13 @@ export const consult: IConsultRequest = {
   toqueVaginal: "realizado",
   uteroFita: "30 cm ",
 };
+
+export const examesDeImagemCompleto : IImageExamesRequest ={
+	laudo: `Em primeiro lugar, é importante definir o que é um laudo médico,
+  pois muita gente o confunde com outros documentos, como o atestado médico.`,
+	anexos: "https://images.pexels.com/photos/207496/pexels-photo-207496.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+}
+
+export const examesDeImagemAtualizados : IImageExamesUpdate = {
+  laudo:"Paciente caiu da escada por estar de chinelo"
+}
