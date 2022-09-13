@@ -133,6 +133,9 @@ export class ExamesLaboratoriais {
   })
   eletro: string
 
+  @Column({ default: true })
+  estaAtivo: boolean
+
   @ManyToOne(() => Prontuario, { eager: true })
   prontuario: Prontuario
 }

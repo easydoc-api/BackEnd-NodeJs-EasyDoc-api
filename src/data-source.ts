@@ -14,7 +14,6 @@ const AppDataSource =
         : false,
 
     synchronize: false,
-
     logging: false,
 
     entities:

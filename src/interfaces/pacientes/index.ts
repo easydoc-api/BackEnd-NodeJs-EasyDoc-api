@@ -1,3 +1,5 @@
+import { Arquivos } from "../../entities/arquivos.entity"
+
 export interface IPacienteRequest {
   nome: string
   cpf: string
@@ -10,7 +12,7 @@ export interface IPacienteRequest {
   diagnostico: string
   procedimentos?: string
   cariotipo?: string
-  arquivos?: []
+  arquivos?: Arquivos[]
 }
 
 export interface IPacienteResponse {

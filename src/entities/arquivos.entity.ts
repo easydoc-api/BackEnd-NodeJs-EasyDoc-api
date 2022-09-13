@@ -12,6 +12,9 @@ export class Arquivos {
   @PrimaryGeneratedColumn("uuid")
   readonly id: string
 
+  @Column({ default: true })
+  estaAtivo: boolean
+
   @CreateDateColumn()
   data: Date
 

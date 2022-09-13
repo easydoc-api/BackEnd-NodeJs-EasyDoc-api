@@ -69,6 +69,9 @@ export class Consulta {
  })
   retorno: string
 
+  @Column({ default: true })
+  estaAtivo: boolean
+
   @ManyToOne(() => Prontuario, { eager: true })
   prontuario: Prontuario
 }
