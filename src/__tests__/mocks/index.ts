@@ -54,14 +54,14 @@ export const loginMedicoNormal: IMedicoLogin = {
   senha: "123456",
 };
 
+export const medicoAtualizadoLogin : IMedicoLogin = {
+  email: "ricardo@gmail.com",
+  senha: "123456",
+}
+
 export const loginMedicoNaoDono: IMedicoLogin = {
   email: "raony@gmail.com",
   senha: "123456",
-};
-
-export const loginMedico: IMedicoLogin = {
-  email: "emailErrado@gmail.com",
-  senha: "senhaForteMasNãoCorreta",
 };
 
 export const patiente: IPacienteRequest = {
