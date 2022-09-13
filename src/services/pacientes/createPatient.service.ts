@@ -32,12 +32,6 @@ export const patientCreateService = async ({
 
   const chartRepository = AppDataSource.getRepository(Prontuario);
 
-  const newChart = chartRepository.create({
-    estaAtivo: true,
-  });
-
-  await chartRepository.save(newChart);
-
   const newPatient = patientRepository.create({
     nome,
     cariotipo,
@@ -51,7 +45,6 @@ export const patientCreateService = async ({
     nomePai,
     procedimentos,
     arquivos_id,
-    prontuario: newChart,
   });
 
   await patientRepository.save(newPatient);
