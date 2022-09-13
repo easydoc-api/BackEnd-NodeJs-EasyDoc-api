@@ -49,4 +49,7 @@ export class ConsultaZero {
 
   @Column({ length: 2000 })
   historiaGinecologicaObstetrica: string
+
+  @Column({ default: true })
+  estaAtivo: boolean
 }
