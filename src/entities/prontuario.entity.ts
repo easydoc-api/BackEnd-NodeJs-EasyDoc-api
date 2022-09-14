@@ -33,13 +33,12 @@ export class Prontuario {
   @JoinTable()
   medicos: Medico[];
 
-  @OneToMany(() => Consulta, (consulta) => consulta.prontuario, { eager: true })
-  consultas: Consulta[];
+  @OneToMany(() => Consulta, (consulta) => consulta.prontuario, {eager: true})
+  @JoinTable()
+  consultas: Consulta[]
 
-  @OneToMany(() => ExamesDeImagem, (examesImagem) => examesImagem.prontuario, {
-    eager: true,
-  })
-  examesImagem: ExamesDeImagem[];
+  @OneToMany(() => ExamesDeImagem, (examesImagem) => examesImagem.prontuario, {eager: true})
+  examesImagem: ExamesDeImagem[]
 
   @OneToMany(
     () => ExamesLaboratoriais,
