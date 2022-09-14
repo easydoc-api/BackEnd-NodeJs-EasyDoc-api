@@ -16,16 +16,11 @@ export const examLabDeleteService = async (id: string) => {
     throw new AppError("Laboratory Exam not found!", 404);
   }
 
-  // se for implementado o soft delete, estaria faltando o "estaAtivo"
+  if (!selectedExamLab.estaAtivo) {
+    throw new AppError("Laboratory Exam is not active!", 400);
+  }
 
-  // if(!selectedExamLab.estaAtivo){
-  //         throw new AppError("Laboratory Exam is not active!", 400)
-  //     }
+  selectedExamLab.estaAtivo = false;
 
-  //     selectedExamLab.estaAtivo = false
-
-  //     await examLabRepository.save(selectedExamLab)
-
-  //delete padrao
-  await examLabRepository.delete(id);
+  await examLabRepository.save(selectedExamLab);
 };

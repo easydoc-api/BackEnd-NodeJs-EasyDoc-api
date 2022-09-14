@@ -199,16 +199,16 @@ describe("/consultas_zero", () => {
     .get("/consulta_zero")
     .set('Authorization', `Bearer ${loginMedicoProfessor.body.token}`)
 
-    const appointmentsDesativated = await request(app)
+    await request(app)
     .delete(`/consulta_zero/${appointments.body[0].id}`)
     .set('Authorization', `Bearer ${loginMedicoProfessor.body.token}`)
 
     const res = await request(app)
-    .get(`/consulta_zero/${appointmentsDesativated.body[0].id}`)
+    .get(`/consulta_zero/${appointments.body[0].id}`)
     .set('Authorization', `Bearer ${loginMedicoProfessor.body.token}`)
     
     expect(res.body.estaAtivo).toEqual(false)
-    expect(res.status).toBe(204)
+    expect(res.status).toBe(200)
   })
 
   test("DELETE /consulta_zero/id - Não é possível desativar uma consultas por id sem autenticação", async () => {
@@ -224,7 +224,7 @@ describe("/consultas_zero", () => {
     .delete(`/consulta_zero/${appointments.body[0].id}`)
     
     
-    expect(res.body).toEqual("message")
+    expect(res.body).toHaveProperty("message")
     expect(res.status).toBe(401)
   })
 
@@ -245,7 +245,7 @@ describe("/consultas_zero", () => {
     .get(`/consulta_zero/13970660-5dbe-423a-9a9d-5c23b37943cf`)
     .set('Authorization', `Bearer ${loginMedicoProfessor.body.token}`)
     
-    expect(res.body).toEqual("message")
+    expect(res.body).toHaveProperty("message")
     expect(res.status).toBe(404)
   })
 })
