@@ -5,58 +5,52 @@ import {
   UpdateDateColumn,
   CreateDateColumn,
   OneToOne,
-} from "typeorm"
-import { Prontuario } from "./prontuario.entity"
+} from "typeorm";
 
 @Entity("consultas_zero")
 export class ConsultaZero {
   @PrimaryGeneratedColumn("uuid")
-  readonly id: string
+  readonly id: string;
 
   @UpdateDateColumn()
-  atualizadoEm: Date
+  atualizadoEm: Date;
 
   @CreateDateColumn()
-  data: Date
+  data: Date;
 
   @Column({ length: 2000 })
-  paridade: string
+  paridade: string;
 
   @Column({ length: 1000 })
-  consanguinidade: string
+  consanguinidade: string;
 
   @Column()
-  idadeGestacional: number
+  idadeGestacional: number;
 
   @Column({
     type: "date",
     nullable: true,
   })
-  dataMenstruacao: string
+  dataMenstruacao: string;
 
   @Column({
     type: "date",
     nullable: true,
   })
-  primeiroUltrassom: string
+  primeiroUltrassom: string;
 
   @Column()
-  semanaGestacional: number
+  semanaGestacional: number;
 
   @Column()
-  diaGestacional: number
+  diaGestacional: number;
 
   @Column({ length: 2000 })
-  historiaPregressa: string
+  historiaPregressa: string;
 
   @Column({ length: 2000 })
-  historiaGinecologicaObstetrica: string
+  historiaGinecologicaObstetrica: string;
 
   @Column({ default: true })
-  estaAtivo: boolean
-
-  @OneToOne(() => Prontuario, {
-    nullable: true,
-  })
-  prontuario: Prontuario
+  estaAtivo: boolean;
 }

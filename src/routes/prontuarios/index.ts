@@ -3,6 +3,7 @@ import { chartDeleteController } from "../../controllers/prontuarios/chartDelete
 import { chartInsertApointmentController } from "../../controllers/prontuarios/chartInsertApointment.controller"
 import { chartInsertDoctorController } from "../../controllers/prontuarios/chartInsertDoctor.controller"
 import { chartInsertImageExamsController } from "../../controllers/prontuarios/chartInsertImageExams.controller"
+import { chartInsertAppointmentZeroController } from "../../controllers/prontuarios/chartInserAppointmentZero.controller";
 import { chartInsertExameLabController } from "../../controllers/prontuarios/chartInsertExameLab.controller"
 import { allChartsListController } from "../../controllers/prontuarios/chartList.controller"
 import { chartListByIdController } from "../../controllers/prontuarios/chartListById.controller"
@@ -14,6 +15,7 @@ const prontuarios = Router()
 export const prontuarioRoutes = () => {
   prontuarios.post("/medicos/:id", chartInsertDoctorController)
   prontuarios.post("/exames_laboratoriais/:id", chartInsertExameLabController)
+  prontuarios.post("/consultaZero/:id", chartInsertAppointmentZeroController);
   prontuarios.post("/exame_imagem/:id", chartInsertImageExamsController)
   prontuarios.get("", allChartsListController) //autenticacao, adm/prof/R4
   prontuarios.get("/pacientes/:id", chartListByIdController) //autenticação
