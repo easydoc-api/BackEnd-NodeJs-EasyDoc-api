@@ -72,17 +72,20 @@ describe("/consultas", () => {
     expect(response.status).toBe(401);
   });
 
-  test("GET /consultas/pacientes/:id - É possível listar uma consulta pelo id do paciente", async () => {
+  test("GET /consultas/:id - É possível listar uma consulta por id", async () => {
     const professorLoginResponse = await request(app)
       .post("/login")
       .send(medicoProfessor);
-    const paciente = await request(app)
-      .get("/pacientes")
+
+      await request(app).post('/pacientes/register').send(patiente)
+      .set('Authorization', `Bearer ${professorLoginResponse.body.token}`)
+
+    const appointments = await request(app)
+      .get("/consultas")
       .set("Authorization", `Bearer ${professorLoginResponse.body.token}`);
 
     const res = await request(app)
-      .get(`/consultas/pacientes/${paciente.body.id}`)
-      .send(paciente)
+      .get(`/consultas/${appointments.body[0].id}`)
       .set("Authorization", `Bearer ${professorLoginResponse.body.token}`);
 
     expect(res.body).toHaveProperty("peso");
@@ -96,10 +99,9 @@ describe("/consultas", () => {
     expect(res.body).toHaveProperty("conduta");
     expect(res.body).toHaveProperty("retorno");
     expect(res.status).toBe(200);
-    expect(res.body).toHaveLength(1);
   });
 
-  test("GET /consultas/paciente/:id - Não é possível listar uma consulta pelo id do paciente sem autorização", async () => {
+  test("GET /consultas/paciente/:id - Não é possível listar uma consulta pelo id sem autorização", async () => {
     const professorLoginResponse = await request(app)
       .post("/login")
       .send(medicoNormal);
@@ -107,19 +109,19 @@ describe("/consultas", () => {
       .send(patiente).set('Authorization', `Bearer ${professorLoginResponse.body.token}`)
 
     const res = await request(app)
-      .get(`/consultas/paciente/${createPatiente.body.id}`)
+      .get(`/consultas/${createPatiente.body.id}`)
       .set("Authorization", `Bearer `);
 
     expect(res.body).toHaveProperty("message");
     expect(res.status).toBe(401);
   });
 
-  test("GET /consultas/paciente/:id - Não é possível listar uma consulta pelo id de um paciente que não existe", async () => {
+  test("GET /consultas/paciente/:id - Não é possível listar uma consulta pelo id que não existe", async () => {
     const professorLoginResponse = await request(app)
       .post("/login")
       .send(loginMedicoProfessor);
     const res = await request(app)
-      .get(`/consultas/paciente/3dbb3947-8e2d-40b0-89ee-ace6c4ec1041`)
+      .get(`/consultas/3dbb3947-8e2d-40b0-89ee-ace6c4ec1041`)
       .set("Authorization", `Bearer ${professorLoginResponse.body.token}`);
 
     expect(res.body).toHaveProperty("message");

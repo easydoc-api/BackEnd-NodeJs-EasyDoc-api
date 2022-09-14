@@ -15,7 +15,7 @@ export const apointmentListOneController = async (req: Request, res: Response) =
   const apointments = await apointmentListService();
 
   const apointment = apointments.find((apointment) => apointment.id === id);
-
+    
   if (apointment) {
     return res.status(200).send(apointment);
   }else{

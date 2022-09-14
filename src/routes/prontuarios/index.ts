@@ -9,20 +9,21 @@ import { allChartsListController } from "../../controllers/prontuarios/chartList
 import { chartListByIdController } from "../../controllers/prontuarios/chartListById.controller"
 import { chartUpdateController } from "../../controllers/prontuarios/chartUpdate.controller"
 import { authTokenMiddleware } from "../../middlewares/authToken.middleware"
+import { isAdmMiddleware } from "../../middlewares/isAdm.middleware"
 
 const prontuarios = Router()
 
 export const prontuarioRoutes = () => {
-  prontuarios.post("/medicos/:id", chartInsertDoctorController)
-  prontuarios.post("/exames_laboratoriais/:id", chartInsertExameLabController)
-  prontuarios.post("/consultaZero/:id", chartInsertAppointmentZeroController);
-  prontuarios.post("/exame_imagem/:id", chartInsertImageExamsController)
-  prontuarios.get("", allChartsListController) //autenticacao, adm/prof/R4
-  prontuarios.get("/pacientes/:id", chartListByIdController) //autenticação
-  prontuarios.get("/consultas/:palavra_chave") //autenticação
-  prontuarios.get("/consultas/:idade_gestacional") //autenticação
-  prontuarios.patch("/:id", chartUpdateController) //autenticação
-  prontuarios.delete("/:id", chartDeleteController) //autenticação
-  prontuarios.post("/consultas/:id", chartInsertApointmentController)
+  prontuarios.post("/medicos/:id", authTokenMiddleware, chartInsertDoctorController)
+  prontuarios.post("/exames_laboratoriais/:id",authTokenMiddleware, chartInsertExameLabController)
+  prontuarios.post("/consultaZero/:id",authTokenMiddleware, chartInsertAppointmentZeroController);
+  prontuarios.post("/exame_imagem/:id",authTokenMiddleware, chartInsertImageExamsController)
+  prontuarios.get("", authTokenMiddleware, isAdmMiddleware ,allChartsListController) 
+  prontuarios.get("/pacientes/:id",authTokenMiddleware, chartListByIdController) 
+  prontuarios.get("/consultas/:palavra_chave",authTokenMiddleware,) 
+  prontuarios.get("/consultas/:idade_gestacional",authTokenMiddleware,) 
+  prontuarios.patch("/:id",authTokenMiddleware, chartUpdateController) 
+  prontuarios.delete("/:id",authTokenMiddleware, isAdmMiddleware, chartDeleteController) 
+  prontuarios.post("/consultas/:id",authTokenMiddleware, chartInsertApointmentController)
   return prontuarios
 }

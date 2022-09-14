@@ -12,6 +12,7 @@ import {
   medicoNormal,
   medicoNormalNaoDono,
   medicoProfessor,
+  medicoProfessorSemAtualizar,
 } from "../../mocks"
 
 describe("/consultas_zero", () => {
@@ -37,7 +38,7 @@ describe("/consultas_zero", () => {
       .send(criarNovaConsultaZero)
     const res = await request(app)
       .post("/medicos/register")
-      .send(criarNovaConsultaZero)
+      .send(medicoProfessorSemAtualizar)
 
     expect(res.body).toHaveProperty("paridade")
     expect(res.body).toHaveProperty("consanguinidade")

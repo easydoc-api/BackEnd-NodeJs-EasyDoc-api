@@ -145,9 +145,13 @@ describe("/examesLaboratoriais", () => {
   });
 
   test("GET /exames_laboratoriais/paciente/:id - Não é possível atualizar um exame de um paciente sem autorização", async () => {
+    
     const loginMedico = await request(app)
-      .post("/login")
-      .send(loginMedicoProfessorSemAtualizar);
+    .post("/login")
+    .send(loginMedicoProfessorSemAtualizar);
+
+    await request(app).post('/pacientes/register').send(patiente)
+    .set('Authorization',`Bearer ${loginMedico.body.token}`)
 
     const exameSelecionado = await request(app)
       .get("/pacientes")

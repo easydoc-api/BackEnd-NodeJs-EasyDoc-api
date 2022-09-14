@@ -19,15 +19,11 @@ export const chartInsertAppointmentZeroService = async (
     },
   });
 
-  //console.log(chartSelected);
-
   const apppointmentZeroSelected = await appointmentZeroRepository.findOne({
     where: {
       id: appointmentZeroId,
     },
   });
-
-  //console.log(apppointmentZeroSelected);
 
   if (!chartSelected || !apppointmentZeroSelected) {
     throw new AppError("Chart not found!", 404);
@@ -43,8 +39,6 @@ export const chartInsertAppointmentZeroService = async (
       id,
     },
   });
-
-  console.log(updatedChar);
 
   if (!updatedChar) {
     throw new AppError("Not found", 404);
