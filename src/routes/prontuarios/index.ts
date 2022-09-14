@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { chartDeleteController } from "../../controllers/prontuarios/chartDelete.controller";
-import { chartInsertServiceController } from "../../controllers/prontuarios/chartInsert.controller";
+import { chartInsertDoctorController} from "../../controllers/prontuarios/chartInsertDoctor.controller";
 import { allChartsListController } from "../../controllers/prontuarios/chartList.controller";
 import { chartListByIdController } from "../../controllers/prontuarios/chartListById.controller";
 import { chartUpdateController } from "../../controllers/prontuarios/chartUpdate.controller";
@@ -8,7 +8,7 @@ import { chartUpdateController } from "../../controllers/prontuarios/chartUpdate
 const prontuarios = Router();
 
 export const prontuarioRoutes = () => {
-  prontuarios.post("/:id", chartInsertServiceController)
+  prontuarios.post("/medicos/:id", chartInsertDoctorController)
   prontuarios.get("", allChartsListController); //autenticacao, adm/prof/R4
   prontuarios.get("/pacientes/:id", chartListByIdController); //autenticação
   prontuarios.get("/consultas/:palavra_chave"); //autenticação

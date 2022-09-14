@@ -136,6 +136,6 @@ export class ExamesLaboratoriais {
   @Column({ default: true })
   estaAtivo: boolean
 
-  @ManyToOne(() => Prontuario, { eager: true })
+  @ManyToOne(() => Prontuario)
   prontuario: Prontuario
 }

@@ -21,3 +21,7 @@ export interface IProntuarioResponse {
   criadoEm: string
   atualizadoEm: string
 }
+
+export interface IProntuarioMedico {
+  id: string
+}

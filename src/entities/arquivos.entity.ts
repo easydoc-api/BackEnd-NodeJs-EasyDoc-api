@@ -22,7 +22,6 @@ export class Arquivos {
   anexos: string
 
   @ManyToOne(() => Paciente, {
-    eager: true,
     nullable: false,
   })
   paciente: Paciente

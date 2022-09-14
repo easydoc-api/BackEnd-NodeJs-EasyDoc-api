@@ -3,6 +3,7 @@ import {
   Column,
   PrimaryGeneratedColumn,
   ManyToOne,
+  ManyToMany,
 } from "typeorm"
 import { Exclude } from "class-transformer"
 import { Prontuario } from "./prontuario.entity"
@@ -37,6 +38,6 @@ export class Medico {
   @Column({ default: false })
   adm: boolean
 
-  @ManyToOne(() => Prontuario, { eager: true })
-  prontuario: Prontuario
+  @ManyToMany(() => Prontuario, (prontuario) => prontuario.medicos)
+  prontuario: Prontuario[]
 }

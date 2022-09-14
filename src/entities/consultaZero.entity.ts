@@ -56,7 +56,6 @@ export class ConsultaZero {
   estaAtivo: boolean
 
   @OneToOne(() => Prontuario, {
-    eager: true,
     nullable: true,
   })
   prontuario: Prontuario
