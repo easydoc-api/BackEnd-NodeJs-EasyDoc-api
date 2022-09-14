@@ -67,6 +67,6 @@ export class Paciente {
   })
   cariotipo: string
 
-  @OneToMany(() => Arquivos, (arquivos) => arquivos.paciente)
+  @OneToMany(() => Arquivos, (arquivos) => arquivos.paciente, {eager: true})
   arquivos_id: Arquivos[]
 }

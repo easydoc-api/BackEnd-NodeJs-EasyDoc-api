@@ -7,6 +7,8 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  ManyToMany,
+  JoinTable,
 } from "typeorm"
 import { Consulta } from "./consulta.entity"
 import { ConsultaZero } from "./consultaZero.entity"
@@ -27,18 +29,20 @@ export class Prontuario {
   @JoinColumn()
   paciente: Paciente
 
-  @OneToMany(() => Medico, (Medico) => Medico.prontuario)
+  @ManyToMany(() => Medico, (medicos) => medicos.prontuario, {eager: true})
+  @JoinTable()
   medicos: Medico[]
 
-  @OneToMany(() => Consulta, (consulta) => consulta.prontuario)
+  @OneToMany(() => Consulta, (consulta) => consulta.prontuario, {eager: true})
   consultas: Consulta[]
 
-  @OneToMany(() => ExamesDeImagem, (examesImagem) => examesImagem.prontuario)
+  @OneToMany(() => ExamesDeImagem, (examesImagem) => examesImagem.prontuario, {eager: true})
   examesImagem: ExamesDeImagem[]
 
   @OneToMany(
     () => ExamesLaboratoriais,
-    (examesLaboratoriais) => examesLaboratoriais.prontuario
+    (examesLaboratoriais) => examesLaboratoriais.prontuario,
+    {eager: true}
   )
   examesLaboratoriais: ExamesLaboratoriais[]
 }
