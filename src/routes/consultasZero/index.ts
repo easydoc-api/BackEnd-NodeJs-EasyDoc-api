@@ -6,6 +6,8 @@ import { appointmentZeroUpdatedController } from "../../controllers/consultasZer
 import { authTokenMiddleware } from "../../middlewares/authToken.middleware";
 import { isAdmMiddleware } from "../../middlewares/isAdm.middleware";
 
+import { apointmentZeroDeleteController } from "../../controllers/consultasZero/consultaZeroDelete.controller";
+
 const appointmentZero = Router();
 
 export const appointmentZeroRoutes = () => {
@@ -26,5 +28,8 @@ export const appointmentZeroRoutes = () => {
     isAdmMiddleware,
     appointmentZeroUpdatedController
   );
+
+  appointmentZero.delete("/:id", apointmentZeroDeleteController);
+
   return appointmentZero;
 };
