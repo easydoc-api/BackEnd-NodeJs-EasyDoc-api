@@ -31,17 +31,18 @@ Os dados solicitados pela API são:
 | Campos NOT NULL | Mensagem |
 |--|--|
 |nome | "" |
+|cpf|""|
 |dataNascimento|""|
 |cidadeOrigem|""|
-|diagnostico|""|
 |idade|""|
+|diagnostico|""|
 
    
 **Retornos:**
 
 | Status | Mensagem | Descrição |
 |--|--|--|
-|200 |Sucesso	Paciente |cadastrado com sucesso. |
+|201 |Sucesso	Paciente |cadastrado com sucesso. |
 |401 |Falha na requisição |Falta algum dado na requisição. |
 |403 |Não autorizado |Verifique a autenticação de ADM ou Token. |
 |500 |Erro interno |Ocorreu uma instabilidade no Gateway, tente novamente em alguns segundos ou aciono o nosso suporte. | 
@@ -49,7 +50,7 @@ Os dados solicitados pela API são:
 
 
 ### GET – /pacientes
-Rota responsável por listar todos os pacientes. O usuário precisa estar autenticado e ter permissão. Ser R4, ADM ou professor.
+Rota responsável por listar todos os pacientes. 
 
 **Requisitos:**
 - Autenticação
@@ -57,19 +58,19 @@ Rota responsável por listar todos os pacientes. O usuário precisa estar autent
   
 
 ### GET – /pacientes/:id 
-Rota responsável por listas um paciente especifico com base no ID. O usuário precisa apenas estar autenticado;
+Rota responsável por listas um paciente especifico com base no ID.
 
 **Requisitos:**
 - Autenticação
 
 ### PATCH – /pacientes/:id 
-Rotas responsável por editar dados dos pacientes. O usuário precisa apenas estar autenticada para fazer alterações
+Rotas responsável por editar dados dos pacientes.
 
 **Requisitos:**
 - Autenticação
 
 ### DELETE – /pacientes/:id
-Rotas responsável por apagar todos os dados de uma paciente. O usuário precisar estar autenticado e apenas ADMs podem deletar.
+Rotas responsável por desativar um paciente.
 
 **Requisitos:**
 - Autenticação
@@ -80,7 +81,7 @@ Rotas responsável por apagar todos os dados de uma paciente. O usuário precisa
 ## Médico
 
 ### POST – /medicos/register
-Responsável por cadastrar um novo médico. Não é necessário autenticação nem permissão para se cadastrar
+Responsável por cadastrar um novo médico. 
 
 **Requisitos:** 
 - Nenhum
@@ -91,8 +92,9 @@ Os dados solicitados pela API são:
     "nome": "kamila",
     "email": "kamila@gmail.com" ,
     "password": "1234", 
-    "categoria": "string" 
+    "categoria": "R4" 
     }
+
 | Campos NOT NULL | Mensagem |
 |--|--|
 |nome | "" |
@@ -104,26 +106,26 @@ Os dados solicitados pela API são:
 
 | Status | Mensagem | Descrição |
 |--|--|--|
-|200 |Sucesso |	Medico cadastrado com sucesso. |
+|201 |Sucesso |	Medico cadastrado com sucesso. |
 |401 |Falha na requisição |Falta algum dado na requisição. |
 |500 |Erro interno |Ocorreu uma instabilidade no Gateway, tente novamente em alguns segundos ou aciono o nosso suporte. | 
 
 ### GET – /medicos/
-Responsável por listar todos os médicos. É necessário estar autenticado e permissão de ADM ou Professor
+Responsável por listar todos os médicos. 
 
 **Requisitos:**
 - Autenticação
 - Ser ADM ou professor.
 
 ###  GET – /medicos/:id
-Responsável por listar um medico especifico por meio do ID. É necessário estar autenticado e permissão de ADM ou Professor.
+Responsável por listar um medico especifico por meio do ID.
 
 **Requisitos:** 
 - Autenticação
 - Ser ADM ou professor
 
 ### PATCH – /medicos/:id 
-Responsável por alterar os dados de um médico especifico. É necessário autenticação e apenas o próprio médico ou ADMs tem permissão.
+Responsável por alterar os dados de um médico especifico.
 
 **Requisitos:** 
 - Autenticação
@@ -131,13 +133,40 @@ Responsável por alterar os dados de um médico especifico. É necessário auten
 - Ser ADM.
 
 ### DELETE – /medicos/id
-Rotas responsável por apagar todos os dados de um médico O usuário precisar estar autenticado e apenas ADMs podem deletar.
-
+Rotas responsável por desativar um medico, todos os dados de um médico são mantidos por preservação de dados. 
 **Requisitos:** 
 - Autenticação.
 - Ser ADM.
 
 ---
+
+## Login
+
+### POST – /login
+Responsável por logar um medico. 
+
+**Requisitos:** 
+- Nenhum
+
+Os dados solicitados pela API são:
+
+    {
+    "nome": "kamila",
+    "email": "kamila@gmail.com" ,
+    }
+
+| Campos NOT NULL | Mensagem |
+|--|--|
+|email|""|
+|password|""|
+
+**Retornos:**
+
+| Status | Mensagem | Descrição |
+|--|--|--|
+|200 |Sucesso |	Medico cadastrado com sucesso. |
+|401 |Falha na requisição |Falta algum dado na requisição. |
+|500 |Erro interno |Ocorreu uma instabilidade no Gateway, tente novamente em alguns segundos ou aciono o nosso suporte. | 
 
 ## Exame de imagem
 
@@ -151,22 +180,19 @@ Os dados solicitados pela API são:
 
     {    
    	"laudo": "uma string",
-	"anexos": "strings"
+	"anexos": ""
     }
 
 | Campos NOT NULL | Mensagem |
 |--|--|
-|Data | "" |
-|idadeGestacional|""|
-|peso|""|
-|pressaoArterial|""|
-|conduta|""|
+|- | - |
+
 
 **Retornos:**
 
 | Status	| Mensagem	| Descrição |
 |--|--|--|
-200 | Sucesso | cadastrado com sucesso.
+201 | Sucesso | cadastrado com sucesso.
 401 | Falha | na requisição	Falta algum dado na requisição.
 403 | Não autorizado | Verifique a autenticação do Token
 500 | Erro interno | Ocorreu uma instabilidade no Gateway, tente novamente em alguns segundos ou aciono o nosso suporte.
@@ -230,10 +256,14 @@ Os dados solicitados pela API são:
         "Eletro": ""
     }
 
-Retornos:
+| Campos NOT NULL | Mensagem |
+|--|--|
+|- | - |
+
+**Retornos:**
 Status | Mensagem | Descrição
 | -- | -- | -- |
-200 | Sucesso |	 cadastrado com sucesso.
+201 | Sucesso |	 cadastrado com sucesso.
 401	| Falha na requisição |	Falta algum dado na requisição.
 403 | Não autorizado | Verifique a autenticação de Token
 500 | Erro interno | Ocorreu uma instabilidade no Gateway, tente novamente em alguns segundos ou aciono o nosso suporte.
@@ -298,7 +328,7 @@ Os dados solicitados pela API são:
 Retornos:
 Status|Mensagem|Descrição
 |--|--|--|
-200|Sucesso|cadastrado com sucesso.
+201|Sucesso|cadastrado com sucesso.
 401|Falha na requisição|Falta algum dado na requisição.
 403|Não autorizado|Verifique a autenticação de Token
 500|Erro interno|Ocorreu uma instabilidade no Gateway, tente novamente em alguns segundos ou aciono o nosso suporte.
@@ -323,7 +353,7 @@ Responsável por editar uma consulta especifica.
 - Autenticação.
 
 ### DELETE -  /consulta_zero /:id   
-Responsável por deletar uma consulta especifica.
+Responsável por desativar uma consulta especifica.
 
 **Requisitos:** 
 - Autenticação
@@ -357,12 +387,14 @@ Os dados solicitados pela API são:
 | Campos NOT NULL | Mensagem |
 |--|--|
 |peso | "" |
+|idadeGestacional | "" |
+|pressaoArterial | "" |
 
 
 Retornos:
 Status|Mensagem|Descrição
 |--|--|--|
-200|Sucesso|cadastrado com sucesso.
+201|Sucesso|cadastrado com sucesso.
 401|Falha na requisição|Falta algum dado na requisição.
 403|Não autorizado|Verifique a autenticação de Token
 500|Erro interno|Ocorreu uma instabilidade no Gateway, tente novamente em alguns segundos ou aciono o nosso suporte.
@@ -381,7 +413,7 @@ Responsável por listar uma consulta especifica.
 - Autenticação.
 
 ### DELETE -  /consultas/:id
-Responsável por deletar uma consulta especifica.
+Responsável por desativar uma consulta especifica.
 
 **Requisitos:** 
 - Autenticação.
@@ -391,6 +423,8 @@ Responsável por deletar uma consulta especifica.
 
 ## Prontuário
 
+O prontuario é criado junto do paciente.
+
 ### GET – /prontuarios
 Responsável por listar todos os prontuários.
 
@@ -398,32 +432,26 @@ Responsável por listar todos os prontuários.
 - Autenticação
 - Ser ADM, professor ou R4.
 
-## GET – /prontuarios/pacientes/:id
+### GET – /prontuarios/pacientes/:id
 Responsável por listar um prontuário especifico.
 
 **Requisitos:** 
 - Autenticação.
 
-## GET –prontuarios/consultas/:palavra_chave
+### GET – /prontuarios/consultas/:id
 Responsável por lista todos os prontuários com base em uma palavra chave.
 
 **Requisitos:** 
 - Autenticação
 
-### GET – prontuarios/consultas/:idade_gestacional
-Responsável por listar todos os prontuários com base na idade gestacional.
-
-**Requisitos:** 
-- Autenticação
-
-## PATCH – /prontuarios/:id
+### PATCH – /prontuarios/:id
 Responsável por editar um prontuário especifico.
 
 **Requisitos:** 
 - Autenticação
 
 ### DELETE -  /prontuarios/:id
-Responsável por deletar um prontuário.   
+Responsável por desativar um prontuário.   
 
 **Requisitos:** 
-- Autenticação
+- Autenticação 
