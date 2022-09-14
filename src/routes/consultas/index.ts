@@ -25,7 +25,7 @@ export const appointmentRoutes = () => {
   );
 
   appointment.get(
-    "/paciente/:id",
+    "/:id",
     authTokenMiddleware,
     apointmentListOneController
   );
