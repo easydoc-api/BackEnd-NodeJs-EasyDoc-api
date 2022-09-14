@@ -2,7 +2,7 @@ import { DataSource } from "typeorm";
 import AppDataSource from "../../../data-source";
 import request from "supertest"
 import app from "../../../app";
-import { loginMedico, loginMedicoProfessor } from "../../mocks";
+import { loginMedico, loginMedicoProfessor, loginMedicoProfessorSemAtualizar, medicoProfessorSemAtualizar } from "../../mocks";
 
 describe("ROUTES - /login", () => {
     let connection: DataSource
@@ -20,7 +20,8 @@ describe("ROUTES - /login", () => {
     })
 
     test("POST /login - É possivel logar", async () =>{
-        const res = await request(app).post('/login').send(loginMedicoProfessor)
+        await request(app).post('/medicos/register').send(medicoProfessorSemAtualizar)
+        const res = await request(app).post('/login').send(loginMedicoProfessorSemAtualizar)
 
         expect(res.body).toHaveProperty("token")
     })

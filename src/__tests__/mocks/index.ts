@@ -70,6 +70,17 @@ export const loginMedicoNaoDono: IMedicoLogin = {
   senha: "123456",
 };
 
+export const medicoProfessorSemAtualizar: IMedicoRequest= {
+  nome: "Gustavo",
+  email: "gustavo@gmail.com",
+  senha: "123456",
+  categoria: "Professor",
+}
+export const loginMedicoProfessorSemAtualizar: IMedicoLogin= {
+  email: "gustavo@gmail.com",
+  senha: "123456"
+}
+
 export const patiente: IPacienteRequest = {
   nome: "Matheus De Souza",
   cpf: "12345678910",

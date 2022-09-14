@@ -28,6 +28,8 @@ describe("/consultas", () => {
   });
 
   test("POST /consultas/register - Possível cadastrar uma consulta", async () => {
+    await request(app).post('/medicos/register').send(medicoProfessor)
+
     const professorLoginResponse = await request(app)
       .post("/login")
       .send(loginMedicoProfessor);
@@ -37,7 +39,7 @@ describe("/consultas", () => {
       .set("Authorization", `Bearer ${professorLoginResponse.body.token}`);
 
     expect(res.body).toHaveProperty("peso");
-    expect(res.body).toHaveProperty("pressãoArterial");
+    expect(res.body).toHaveProperty("pressaoArterial");
     expect(res.body).toHaveProperty("uteroFita");
     expect(res.body).toHaveProperty("apresentacao");
     expect(res.body).toHaveProperty("movimentacaoFetal");
@@ -83,16 +85,16 @@ describe("/consultas", () => {
       .send(paciente)
       .set("Authorization", `Bearer ${professorLoginResponse.body.token}`);
 
-    expect(res.body[0]).toHaveProperty("peso");
-    expect(res.body[0]).toHaveProperty("pressaoArterial");
-    expect(res.body[0]).toHaveProperty("uteroFita");
-    expect(res.body[0]).toHaveProperty("apresentação");
-    expect(res.body[0]).toHaveProperty("movimentacaoFetal");
-    expect(res.body[0]).toHaveProperty("batimentoCardiacoFetal");
-    expect(res.body[0]).toHaveProperty("edema");
-    expect(res.body[0]).toHaveProperty("toqueVaginal");
-    expect(res.body[0]).toHaveProperty("conduta");
-    expect(res.body[0]).toHaveProperty("retorno");
+    expect(res.body).toHaveProperty("peso");
+    expect(res.body).toHaveProperty("pressaoArterial");
+    expect(res.body).toHaveProperty("uteroFita");
+    expect(res.body).toHaveProperty("apresentacao");
+    expect(res.body).toHaveProperty("movimentacaoFetal");
+    expect(res.body).toHaveProperty("batimentoCardFetal");
+    expect(res.body).toHaveProperty("edema");
+    expect(res.body).toHaveProperty("toqueVaginal");
+    expect(res.body).toHaveProperty("conduta");
+    expect(res.body).toHaveProperty("retorno");
     expect(res.status).toBe(200);
     expect(res.body).toHaveLength(1);
   });
