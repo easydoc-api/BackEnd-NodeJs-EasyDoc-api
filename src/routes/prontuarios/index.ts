@@ -1,14 +1,15 @@
 import { Router } from "express";
 import { chartDeleteController } from "../../controllers/prontuarios/chartDelete.controller";
-import { chartInsertDoctorController} from "../../controllers/prontuarios/chartInsertDoctor.controller";
+import { chartInsertDoctorController } from "../../controllers/prontuarios/chartInsertDoctor.controller";
 import { allChartsListController } from "../../controllers/prontuarios/chartList.controller";
 import { chartListByIdController } from "../../controllers/prontuarios/chartListById.controller";
 import { chartUpdateController } from "../../controllers/prontuarios/chartUpdate.controller";
-//importar middleware
+import { chartInsertAppointmentZeroController } from "../../controllers/prontuarios/chartInserAppointmentZero.controller";
+
 const prontuarios = Router();
 
 export const prontuarioRoutes = () => {
-  prontuarios.post("/medicos/:id", chartInsertDoctorController)
+  prontuarios.post("/medicos/:id", chartInsertDoctorController);
   prontuarios.get("", allChartsListController); //autenticacao, adm/prof/R4
   prontuarios.get("/pacientes/:id", chartListByIdController); //autenticação
   prontuarios.get("/consultas/:palavra_chave"); //autenticação
@@ -16,5 +17,6 @@ export const prontuarioRoutes = () => {
   prontuarios.patch("/:id", chartUpdateController); //autenticação
   prontuarios.delete("/:id", chartDeleteController); //autenticação
 
+  prontuarios.post("/consultaZero/:id", chartInsertAppointmentZeroController);
   return prontuarios;
 };
