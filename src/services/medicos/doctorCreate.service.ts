@@ -1,8 +1,8 @@
-import { hash } from "bcryptjs";
-import AppDataSource from "../../data-source";
-import { Medico } from "../../entities/medico.entity";
-import { AppError } from "../../errors/AppError";
-import { IMedicoRequest } from "../../interfaces/medicos";
+import { hash } from "bcryptjs"
+import AppDataSource from "../../data-source"
+import { Medico } from "../../entities/medico.entity"
+import { AppError } from "../../errors/AppError"
+import { IMedicoRequest } from "../../interfaces/medicos"
 
 export const doctorCreateService = async ({
   nome,
@@ -10,22 +10,22 @@ export const doctorCreateService = async ({
   senha,
   categoria,
 }: IMedicoRequest) => {
-  const doctorRepository = AppDataSource.getRepository(Medico);
+  const doctorRepository = AppDataSource.getRepository(Medico)
 
   const doctorAlreadyExists = await doctorRepository.findOne({
     where: {
       email,
     },
-  });
-
+  })
+ 
   if (doctorAlreadyExists) {
-    throw new AppError("Doctor is already registered!", 409);
+    throw new AppError("Doctor is already registered!", 400)
   }
-
-  const hashedPassword = await hash(senha, 10);
+  
+  const hashedPassword = await hash(senha, 10)
 
   if (categoria === "R4" || categoria === "Professor") {
-    console.log("Deu errado");
+  
     const admDoctor = doctorRepository.create({
       nome,
       email,
@@ -34,24 +34,24 @@ export const doctorCreateService = async ({
       adm: true,
       criadoEm: new Date(),
       atualizadoEm: new Date(),
-    });
+    })
 
-    await doctorRepository.save(admDoctor);
+    await doctorRepository.save(admDoctor)
 
-    return admDoctor;
+    return admDoctor
   }
+
   const normalDoctor = doctorRepository.create({
     nome,
     email,
     senha: hashedPassword,
     categoria,
     adm: false,
-    estaAtivo: true,
     criadoEm: new Date(),
     atualizadoEm: new Date(),
-  });
+  })
 
-  await doctorRepository.save(normalDoctor);
+  await doctorRepository.save(normalDoctor)
 
-  return normalDoctor;
-};
+  return normalDoctor
+}

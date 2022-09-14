@@ -3,6 +3,7 @@ import {
   Column,
   PrimaryGeneratedColumn,
   ManyToOne,
+  ManyToMany,
 } from "typeorm"
 import { Exclude } from "class-transformer"
 import { Prontuario } from "./prontuario.entity"
@@ -18,14 +19,14 @@ export class Medico {
   @Column()
   atualizadoEm: Date
 
-  @Column({ length: 200 })
+  @Column({ length: 2000 })
   nome: string
 
-  @Column({ length: 200, unique: true })
+  @Column({ length: 2000, unique: true })
   email: string
 
   @Column({ length: 200 })
-  @Exclude()
+  @Exclude({toPlainOnly: true})
   senha: string
 
   @Column({ length: 200 })
@@ -37,6 +38,6 @@ export class Medico {
   @Column({ default: false })
   adm: boolean
 
-  @ManyToOne(() => Prontuario, { eager: true })
-  prontuario: Prontuario
+  @ManyToMany(() => Prontuario, (prontuario) => prontuario.medicos)
+  prontuario: Prontuario[]
 }

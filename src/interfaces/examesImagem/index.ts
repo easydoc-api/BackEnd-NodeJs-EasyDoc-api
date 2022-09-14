@@ -1,6 +1,16 @@
 export interface IImageExamesRequest {
-  data: Date
   laudo?: string
-  atualizadoEm: string
-  anexo?: []
+  anexos?: string
+}
+
+export interface IImageExamesUpdate {
+  laudo?: string
+  anexos?: string
+}
+
+
+export interface IImageExames{
+  id: string
+  laudo?: string
+  anexos?: string
 }

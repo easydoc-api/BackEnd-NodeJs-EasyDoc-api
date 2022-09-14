@@ -25,33 +25,53 @@ export class Consulta {
   @Column({ type: "decimal", precision: 4, scale: 3 })
   peso: number
 
-  @Column({ length: 50 })
-  pressãoArterial: string
+  @Column({ length: 500 })
+  pressaoArterial: string
 
-  @Column({ length: 10 })
-  uteroFita?: string
+  @Column({ 
+    length: 1000,
+    nullable: true
+   })
+  uteroFita: string
 
-  @Column({ length: 10 })
-  apresentacao?: string
+  @Column({ 
+    length: 1000,
+    nullable: true
+   })
+  apresentacao: string
 
-  @Column()
-  movimentacaoFetal?: boolean
+  @Column({nullable: true})
+  movimentacaoFetal: boolean
 
-  @Column({ length: 10 })
-  batimentoCardFetal?: string
+  @Column({ 
+    length: 100,
+    nullable: true
+   })
+  batimentoCardFetal: string
 
-  @Column({ length: 10 })
-  edema?: string
+  @Column({ 
+    length: 1000,
+    nullable: true
+   })
+  edema: string
 
-  @Column({ length: 200 })
-  toqueVaginal?: string
+  @Column({ length: 2000,
+    nullable: true
+   })
+  toqueVaginal: string
 
-  @Column({ length: 200 })
+  @Column({ length: 2000 })
   conduta: string
 
-  @Column({ type: "date" })
-  retorno?: string
+  @Column({ 
+    type: "date",
+    nullable: true
+ })
+  retorno: string
 
-  @ManyToOne(() => Prontuario, { eager: true })
-  prontuario: Prontuario
+  @Column({ default: true })
+  estaAtivo: boolean
+
+  @ManyToOne(() => Prontuario, (prontuario) => prontuario.consultas)
+  prontuario: Prontuario[]
 }

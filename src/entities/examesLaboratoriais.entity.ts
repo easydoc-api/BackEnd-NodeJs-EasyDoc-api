@@ -19,63 +19,123 @@ export class ExamesLaboratoriais {
   @CreateDateColumn()
   data: Date
 
-  @Column({ length: 20 })
-  gs_rh?: string
+  @Column({ 
+    length: 200, 
+    nullable: true 
+  })
+  gs_rh: string
 
-  @Column({ length: 20 })
-  coombs?: string
+  @Column({ 
+    length: 200, 
+    nullable: true 
+  })
+  coombs: string
 
-  @Column({ length: 20 })
-  hb_ht?: string
+  @Column({ 
+    length: 200, 
+    nullable: true 
+  })
+  hb_ht: string
 
-  @Column({ length: 20 })
-  plaq?: string
+  @Column({ 
+    length: 200, 
+    nullable: true 
+  })
+  plaq: string
 
-  @Column({ length: 20 })
-  gj?: string
+  @Column({ 
+    length: 200, 
+    nullable: true 
+  })
+  gj: string
 
-  @Column({ length: 20 })
-  gpd?: string
+  @Column({ 
+    length: 200, 
+    nullable: true 
+  })
+  gpd: string
 
-  @Column({ length: 20 })
-  vdrl?: string
+  @Column({ 
+    length: 200, 
+    nullable: true 
+  })
+  vdrl: string
 
-  @Column({ length: 20 })
-  hbsag?: string
+  @Column({ 
+    length: 200, 
+    nullable: true 
+  })
+  hbsag: string
 
-  @Column({ length: 20 })
-  antiHiv?: string
+  @Column({ 
+    length: 200, 
+    nullable: true 
+  })
+  antiHiv: string
 
-  @Column({ length: 20 })
-  antiHcv?: string
+  @Column({ 
+    length: 200, 
+    nullable: true 
+  })
+  antiHcv: string
 
-  @Column({ length: 20 })
-  antiHtlv?: string
+  @Column({ 
+    length: 200, 
+    nullable: true 
+  })
+  antiHtlv: string
 
-  @Column({ length: 20 })
-  toxop?: string
+  @Column({ 
+    length: 200, 
+    nullable: true 
+  })
+  toxop: string
 
-  @Column({ length: 20 })
-  rubeola?: string
+  @Column({ 
+    length: 200, 
+    nullable: true 
+  })
+  rubeola: string
 
-  @Column({ length: 20 })
-  cmv?: string
+  @Column({ 
+    length: 200, 
+    nullable: true 
+  })
+  cmv: string
 
-  @Column({ length: 20 })
-  tsh?: string
+  @Column({ 
+    length: 200, 
+    nullable: true 
+  })
+  tsh: string
 
-  @Column({ length: 20 })
-  eas?: string
+  @Column({ 
+    length: 200, 
+    nullable: true 
+  })
+  eas: string
 
-  @Column({ length: 20 })
-  urocult?: string
+  @Column({ 
+    length: 200, 
+    nullable: true 
+  })
+  urocult: string
 
-  @Column({ length: 20 })
-  strep?: string
+  @Column({ 
+    length: 200, 
+    nullable: true 
+  })
+  strep: string
 
-  @Column({ length: 20 })
-  eletro?: string
+  @Column({ 
+    length: 200, 
+    nullable: true 
+  })
+  eletro: string
 
-  @ManyToOne(() => Prontuario, { eager: true })
+  @Column({ default: true })
+  estaAtivo: boolean
+
+  @ManyToOne(() => Prontuario)
   prontuario: Prontuario
 }

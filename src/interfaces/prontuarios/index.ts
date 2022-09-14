@@ -1,10 +1,27 @@
+import { IConsulta } from "../consultas"
+import { IMedicoChart } from "../medicos"
+import {IImageExames} from  "../examesImagem"
+import { ILabExames } from "../examesLaboratoriais"
+
 export interface IProntuarioRequest {
-  paciente_id: string
-  medico_id: []
-  consulta_id: []
-  exameImagem_id: []
-  consultaZero_id: string
-  exameLaboratorial_id: []
-  criadoEm: Date
-  atualizadoEm: Date
+  medicos?: IMedicoChart[]
+  consultas?: IConsulta[]
+  examesImagens?: IImageExames[]
+  consultaZero_id?: string
+  examesLaboratoriais?: ILabExames[]
+}
+
+export interface IProntuarioResponse {
+  paciente_id?: string
+  medicos?: IMedicoChart[]
+  consultas?: IConsulta[]
+  examesImagens?: IImageExames[]
+  consultaZero_id?: string
+  examesLaboratoriais?: ILabExames[]
+  criadoEm: string
+  atualizadoEm: string
+}
+
+export interface IProntuarioMedico {
+  id: string
 }
