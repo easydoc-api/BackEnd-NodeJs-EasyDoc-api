@@ -23,17 +23,6 @@ export const medicoAtualizado: IMedicoUpdate = {
   categoria: "Professor",
 };
 
-export const medicoProfessorSemAtualizar: IMedicoRequest= {
-  nome: "Gustavo",
-  email: "gustavo@gmail.com",
-  senha: "123456",
-  categoria: "Professor",
-}
-export const loginMedicoProfessorSemAtualizar: IMedicoLogin= {
-  email: "gustavo@gmail.com",
-  senha: "123456"
-}
-
 export const loginMedicoProfessor: IMedicoLogin = {
   email: "kamila@gmail.com",
   senha: "123456",

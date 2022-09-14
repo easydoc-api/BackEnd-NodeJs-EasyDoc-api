@@ -4,7 +4,9 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
   CreateDateColumn,
+  OneToOne,
 } from "typeorm"
+import { Prontuario } from "./prontuario.entity"
 
 @Entity("consultas_zero")
 export class ConsultaZero {
@@ -26,15 +28,15 @@ export class ConsultaZero {
   @Column()
   idadeGestacional: number
 
-  @Column({ 
+  @Column({
     type: "date",
-    nullable: true
-   })
+    nullable: true,
+  })
   dataMenstruacao: string
 
-  @Column({ 
+  @Column({
     type: "date",
-    nullable: true
+    nullable: true,
   })
   primeiroUltrassom: string
 
@@ -52,4 +54,10 @@ export class ConsultaZero {
 
   @Column({ default: true })
   estaAtivo: boolean
+
+  @OneToOne(() => Prontuario, {
+    eager: true,
+    nullable: true,
+  })
+  prontuario: Prontuario
 }

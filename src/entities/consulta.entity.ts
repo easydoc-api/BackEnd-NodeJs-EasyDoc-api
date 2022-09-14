@@ -26,7 +26,7 @@ export class Consulta {
   peso: number
 
   @Column({ length: 500 })
-  pressaoArterial: string
+  pressãoArterial: string
 
   @Column({ 
     length: 1000,
