@@ -44,3 +44,27 @@ export interface ILabExamesResponse {
   eletro?: string;
 }
 
+export interface ILabExames {
+  id: string
+  gs_rh?: string;
+  coombs?: string;
+  hb_ht?: string;
+  plaq?: string;
+  gj?: string;
+  gpd?: string;
+  vdrl?: string;
+  hbsag?: string;
+  antiHiv?: string;
+  antiHcv?: string;
+  antiHtlv?: string;
+  toxop?: string;
+  rubeola?: string;
+  cmv?: string;
+  tsh?: string;
+  eas?: string;
+  urocult?: string;
+  strep?: string;
+  eletro?: string;
+  atualizadoEm: string;
+  data: Date;
+}

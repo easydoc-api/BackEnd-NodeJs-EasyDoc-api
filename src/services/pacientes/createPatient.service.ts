@@ -47,7 +47,7 @@ export const patientCreateService = async ({
     arquivos_id,
   })
   const newPront = chartRepository.create({
-    paciente: newPatient,
+    paciente: newPatient
   })
   await chartRepository.save(newPront)
   return newPront.paciente
