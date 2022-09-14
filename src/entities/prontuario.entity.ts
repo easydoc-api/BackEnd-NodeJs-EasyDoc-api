@@ -5,6 +5,8 @@ import {
   JoinColumn,
   Column,
   PrimaryGeneratedColumn,
+  CreateDateColumn,
+  UpdateDateColumn,
 } from "typeorm"
 import { Consulta } from "./consulta.entity"
 import { ConsultaZero } from "./consultaZero.entity"

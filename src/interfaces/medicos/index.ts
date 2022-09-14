@@ -27,3 +27,9 @@ export interface IMedicoUpdate {
   senha?: string
   categoria?: string
 }
+
+export interface IMedicoChart{
+  id: string
+  nome: string
+  categoria: string
+}
