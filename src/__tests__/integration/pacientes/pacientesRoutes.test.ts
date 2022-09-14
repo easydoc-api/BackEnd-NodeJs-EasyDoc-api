@@ -20,7 +20,6 @@ describe("ROUTES - /patientes", () => {
     })
 
     test("POST /pacientes/register - Possível criar um paciente", async () =>{
-        await request(app).post('/medicos/register').send(medicoProfessor)
         const loginProfessor  =await request(app).post('/login').send(loginMedicoProfessor)
         const response = await request(app).post('/pacientes/register')
         .send(patiente).set('Authorization', `Bearer ${loginProfessor.body.token}`)

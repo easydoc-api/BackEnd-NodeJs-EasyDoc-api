@@ -2,7 +2,7 @@ import { DataSource } from "typeorm";
 import AppDataSource from "../../../data-source";
 import request from "supertest"
 import app from "../../../app";
-import { examesDeImagemAtualizados, examesDeImagemCompleto, loginMedico, loginMedicoNormal, loginMedicoProfessor, loginMedicoProfessorSemAtualizar, medicoAtualizadoLogin, medicoProfessorSemAtualizar } from "../../mocks";
+import { examesDeImagemAtualizados, examesDeImagemCompleto, loginMedico, loginMedicoNormal, loginMedicoProfessor, medicoAtualizadoLogin } from "../../mocks";
 
 describe("ROUTES - /exames_imagem", () => {
     let connection: DataSource
@@ -20,8 +20,7 @@ describe("ROUTES - /exames_imagem", () => {
     })
 
     test("POST /exame_imagem/register - É possível criar um exame de imagem com autorização", async () =>{
-        await request(app).post('/medicos/register').send(medicoProfessorSemAtualizar)
-        const doctorLogin = await request(app).post('/login').send(loginMedicoProfessorSemAtualizar)
+        const doctorLogin = await request(app).post('/login').send(loginMedicoProfessor)
 
         const res = await request(app).post('/exame_imagem/register')
         .send(examesDeImagemCompleto).set('Authorization', `Bearer ${doctorLogin.body.token}`)
@@ -43,7 +42,7 @@ describe("ROUTES - /exames_imagem", () => {
     })
 
     test("GET /exame_imagem - É possível listar todos os exames de imagens", async () =>{
-        const doctorLogin = await request(app).post('/login').send(loginMedicoProfessorSemAtualizar)
+        const doctorLogin = await request(app).post('/login').send(loginMedicoProfessor)
 
         const res = await request(app).get('/exame_imagem')
         .set('Authorization', `Bearer ${doctorLogin.body.token}`)
@@ -61,7 +60,7 @@ describe("ROUTES - /exames_imagem", () => {
     })
     
     test("GET /exame_imagem/:id - É possível listar um exame de imagem com autorização", async () =>{
-        const doctorLogin = await request(app).post('/login').send(loginMedicoProfessorSemAtualizar)
+        const doctorLogin = await request(app).post('/login').send(loginMedicoProfessor)
 
         const exams = await request(app).get('/exame_imagem')
         .set('Authorization', `Bearer ${doctorLogin.body.token}`)
@@ -79,7 +78,7 @@ describe("ROUTES - /exames_imagem", () => {
     })
 
     test("GET /exame_imagem/:id - É possível listar um exame de imagem sem autorização", async () =>{
-        const doctorLogin = await request(app).post('/login').send(loginMedicoProfessorSemAtualizar)
+        const doctorLogin = await request(app).post('/login').send(loginMedicoProfessor)
 
         const exams = await request(app).get('/exame_imagem')
         .set('Authorization', `Bearer ${doctorLogin.body.token}`)
@@ -91,7 +90,7 @@ describe("ROUTES - /exames_imagem", () => {
     })
     
     test("PATCH /exame_imagem/:id - É possível atualizar um exame de imagem com autorização", async () =>{
-        const doctorLogin = await request(app).post('/login').send(loginMedicoProfessorSemAtualizar)
+        const doctorLogin = await request(app).post('/login').send(loginMedicoProfessor)
 
         const exams = await request(app).get('/exame_imagem')
         .set('Authorization', `Bearer ${doctorLogin.body.token}`)
@@ -110,7 +109,7 @@ describe("ROUTES - /exames_imagem", () => {
     })
 
     test("PATCH /exame_imagem/:id - Não é possível atualizar um exame de imagem sem autorização", async () =>{
-        const doctorLogin = await request(app).post('/login').send(loginMedicoProfessorSemAtualizar)
+        const doctorLogin = await request(app).post('/login').send(loginMedicoProfessor)
 
         const exams = await request(app).get('/exame_imagem')
         .set('Authorization', `Bearer ${doctorLogin.body.token}`)
@@ -123,7 +122,7 @@ describe("ROUTES - /exames_imagem", () => {
     })
 
     test("DELETE /exame_imagem/:id - É possível desativar um exame de imagem com autorização", async () =>{
-        const professorLogin = await request(app).post('/login').send(loginMedicoProfessorSemAtualizar)
+        const professorLogin = await request(app).post('/login').send(loginMedicoProfessor)
 
         const exams = await request(app).get('/exame_imagem')
         .set('Authorization', `Bearer ${professorLogin.body.token}`)
@@ -139,7 +138,7 @@ describe("ROUTES - /exames_imagem", () => {
     })
 
     test("DELETE /exame_imagem/:id - Não é possível desativar um exame de imagem sem autorização", async () =>{
-        const doctorLogin = await request(app).post('/login').send(loginMedicoProfessorSemAtualizar)
+        const doctorLogin = await request(app).post('/login').send(loginMedicoProfessor)
 
         const exams = await request(app).get('/exame_imagem')
         .set('Authorization', `Bearer ${doctorLogin.body.token}`)

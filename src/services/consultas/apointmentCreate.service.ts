@@ -26,7 +26,7 @@ export const apointmentCreateService = async ({
     idadeGestacional: idadeGestacional,
     batimentoCardFetal: batimentoCardFetal,
     movimentacaoFetal: movimentacaoFetal,
-    pressaoArterial: pressaoArterial,
+    pressãoArterial: pressaoArterial,
     toqueVaginal: toqueVaginal,
     uteroFita: uteroFita,
     atualizadoEm: new Date(),

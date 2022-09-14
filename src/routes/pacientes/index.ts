@@ -28,6 +28,7 @@ export const patientRoutes = () => {
     isAdmMiddleware,
     patientDeleteController
   );
-
+  
   return patient;
 };
+//

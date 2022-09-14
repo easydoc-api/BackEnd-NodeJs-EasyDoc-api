@@ -1,7 +1,8 @@
-import AppDataSource from "../../data-source";
-import { ConsultaZero } from "../../entities/consultaZero.entity";
-import { AppError } from "../../errors/AppError";
-import { IConsultZeroRequest } from "../../interfaces/consultasZero";
+import AppDataSource from "../../data-source"
+import { ConsultaZero } from "../../entities/consultaZero.entity"
+import { Prontuario } from "../../entities/prontuario.entity"
+import { AppError } from "../../errors/AppError"
+import { IConsultZeroRequest } from "../../interfaces/consultasZero"
 
 export const appointmentZeroCreateService = async ({
   paridade,
@@ -14,15 +15,8 @@ export const appointmentZeroCreateService = async ({
   historiaPregressa,
   historiaGinecologicaObstetrica,
 }: IConsultZeroRequest) => {
-  const appointmentZeroRepository = AppDataSource.getRepository(ConsultaZero);
-
-  const zeroAppointmentAlredyExists = await appointmentZeroRepository.findOneBy(
-    {}
-  );
-
-  if (zeroAppointmentAlredyExists) {
-    throw new AppError("Consulta zero já cadastrada", 401);
-  }
+  const appointmentZeroRepository = AppDataSource.getRepository(ConsultaZero)
+  const chartRepository = AppDataSource.getRepository(Prontuario)
 
   const appointmentZero = appointmentZeroRepository.create({
     paridade,
@@ -34,9 +28,10 @@ export const appointmentZeroCreateService = async ({
     diaGestacional,
     historiaPregressa,
     historiaGinecologicaObstetrica,
-  });
+    
+  })
 
-  await appointmentZeroRepository.save(appointmentZero);
+  await appointmentZeroRepository.save(appointmentZero)
 
-  return appointmentZero;
-};
+  return appointmentZero
+}

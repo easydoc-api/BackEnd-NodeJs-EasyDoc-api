@@ -43,15 +43,15 @@ export class Paciente {
   @Column()
   idade: number
 
-  @Column({ 
-    length: 2000, 
-    nullable: true 
+  @Column({
+    length: 2000,
+    nullable: true,
   })
   nomeBebe: string
 
-  @Column({ 
-    length: 2000, 
-    nullable: true 
+  @Column({
+    length: 2000,
+    nullable: true,
   })
   nomePai: string
 
@@ -61,20 +61,11 @@ export class Paciente {
   @Column()
   procedimentos: string
 
-  @Column({ 
-    length: 200, 
-    nullable: true 
-  })
-  cariotipo: string
-
-  @OneToOne(() => Prontuario, {
-    eager: true,
+  @Column({
+    length: 200,
     nullable: true,
   })
-  @JoinColumn({
-    name: "prontuario_id",
-  })
-  prontuario: Prontuario
+  cariotipo: string
 
   @OneToMany(() => Arquivos, (arquivos) => arquivos.paciente)
   arquivos_id: Arquivos[]
