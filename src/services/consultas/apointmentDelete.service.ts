@@ -10,7 +10,7 @@ export const apointmentDeleteService = async (id: string) => {
   const target = apointment.find((apointment) => apointment.id === id);
 
   if(target){
-    await apointmentRepository.delete(id);
+    target.estaAtivo = false
   }else{
     throw new AppError("apointment dont exists",404);
   }

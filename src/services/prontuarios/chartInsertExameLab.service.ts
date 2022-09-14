@@ -18,8 +18,6 @@ export const chartInsertExameLabService = async (exameLabId : string, id : strin
     }
   })
 
-  console.log(chartSelected)
-
   const exameSelected = await exameRepository.findOne({where:{
     id: exameLabId
   }})

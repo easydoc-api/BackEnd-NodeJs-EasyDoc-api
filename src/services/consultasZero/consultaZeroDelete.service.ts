@@ -9,10 +9,13 @@ export const apointmentZeroDeleteService = async (id: string) => {
 
   const target = apointmentZero.find((apointment) => apointment.id === id);
 
-  if (target) {
-    await apointmentZeroRepository.delete(id);
-  } else {
-    throw new AppError("Appointment dont exists", 404);
+  if (!target) {
+    throw new AppError("Appointment Zero dont exists", 404);
   }
+
+  target.estaAtivo = false
+
+  await apointmentZeroRepository.save(target)
+
   return target;
 };

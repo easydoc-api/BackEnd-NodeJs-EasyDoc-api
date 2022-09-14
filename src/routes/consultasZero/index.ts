@@ -29,7 +29,7 @@ export const appointmentZeroRoutes = () => {
     appointmentZeroUpdatedController
   );
 
-  appointmentZero.delete("/:id", apointmentZeroDeleteController);
+  appointmentZero.delete("/:id",authTokenMiddleware, isAdmMiddleware, apointmentZeroDeleteController);
 
   return appointmentZero;
 };
