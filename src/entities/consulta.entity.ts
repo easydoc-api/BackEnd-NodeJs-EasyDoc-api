@@ -73,5 +73,5 @@ export class Consulta {
   estaAtivo: boolean
 
   @ManyToOne(() => Prontuario, (prontuario) => prontuario.consultas)
-  prontuario: Prontuario[]
+  prontuario: Prontuario
 }
