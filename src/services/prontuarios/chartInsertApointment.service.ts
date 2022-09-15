@@ -21,18 +21,22 @@ export const chartInsertApointmentService = async (apointmentId : string, id : s
     id: apointmentId
   }})
 
+  console.log(apontimentSelected)
+  
   if(!chartSelected){
     throw new AppError("Chart not found!", 404)
   }
 
   await apointmentRepository.save({
     ...apontimentSelected,
-    prontuario: [chartSelected]
+    prontuario:chartSelected
   })
 
   const updatedChar = await chartRepository.findOne({where:{
     id
   }})
+
+  console.log(updatedChar)
 
   if(!updatedChar){
     throw new AppError("Not found", 404)
